@@ -23,13 +23,17 @@ piirraKappale(1, 40, 80, 12);
 piirraKappale(1, 45, 130, 12); 
 piirraKappale(1, 50, 180, 12); 
 
+translate(0, 180, 0);
+fill(139, 69, 19);
+piirraKappale(20, 25, 30, 24);
+
 //piirretään paketti
-translate(-250, 150, 0);
+translate(-250, 10, 0);
 fill(0, 0, 150);
 piirraKappale(50, 50, 50, 4); 
 
 //piirretään maa
-translate(0, 100, 0);
+translate(0, 80, 0);
 fill(255);
 piirraKappale(2000, 2000, 1, 6);
 
