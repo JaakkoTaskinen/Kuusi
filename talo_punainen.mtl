@@ -1,0 +1,57 @@
+# Alias Wavefront MTL File Exported from SketchUp
+# with OBJexporter (c) 2013 TIG
+# Made for 'talo_punainen.obj'
+
+newmtl Default_Material
+Ka 1 1 1
+Kd 1 1 1
+Ks 0.333 0.333 0.333
+Ns 0
+d 1
+Tr 1
+
+newmtl GAF_Country_Mansion
+Ka 0.356863 0.333333 0.32549
+Kd 0.356863 0.333333 0.32549
+Ks 0.333 0.333 0.333
+Ns 0
+d 1
+Tr 1
+map_Kd talo_punainen_Textures/GAF_Country_Mansion.PNG
+
+newmtl Glass_Blue_Tint
+Ka 0.0352941 0.686275 0.945098
+Kd 0.0352941 0.686275 0.945098
+Ks 0.333 0.333 0.333
+Ns 0
+d 0.48
+Tr 0.48
+map_Kd talo_punainen_Textures/Glass_Blue_Tint.PNG
+
+newmtl Terrazzo
+Ka 0.568627 0.568627 0.568627
+Kd 0.568627 0.568627 0.568627
+Ks 0.333 0.333 0.333
+Ns 0
+d 1
+Tr 1
+map_Kd talo_punainen_Textures/Terrazzo.PNG
+
+newmtl Material1
+Ka 0 0 0
+Kd 0 0 0
+Ks 0.333 0.333 0.333
+Ns 0
+d 1
+Tr 1
+
+newmtl Stone_Granite_Midnite
+Ka 0.407843 0.396078 0.4
+Kd 0.407843 0.396078 0.4
+Ks 0.333 0.333 0.333
+Ns 0
+d 1
+Tr 1
+map_Kd talo_punainen_Textures/Stone_Granite_Midnite.PNG
+
+#EOF
