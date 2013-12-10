@@ -1,3 +1,6 @@
+boolean himmenee = true;
+boolean kirkastuu = false;
+float vari = 255;
 void setup() {
 size(640, 660, P3D);
 }
@@ -29,13 +32,29 @@ piirraKappale(20, 25, 30, 24);
 
 //piirretään paketti
 translate(-250, 10, 0);
-fill(0, 0, 150);
+if(vari == 200){
+ himmenee = false;
+ kirkastuu = true;
+}
+if(vari == 255){
+  himmenee = true;
+  kirkastuu = false;
+}
+if (himmenee){
+  vari = vari - 1;
+}
+if(kirkastuu) {
+  vari = vari + 1;
+}
+
+ fill(vari);
 piirraKappale(50, 50, 50, 4); 
+
 
 //piirretään maa
 translate(0, 80, 0);
 fill(255);
-piirraKappale(2000, 2000, 1, 6);
+piirraKappale(2000, 2000, 1, 60);
 
 
 }
