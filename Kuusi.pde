@@ -2,8 +2,10 @@
 boolean himmenee = true;
 boolean kirkastuu = false;
 float vari = 255;
+PImage img;
 //=======
 import saito.objloader.*;
+
 
 OBJModel model;
 
@@ -11,6 +13,7 @@ OBJModel model;
 void setup() {
 size(640, 660, P3D);
 model = new OBJModel(this, "possu.obj", "relative", TRIANGLES);
+img = loadImage("tausta.jpg");
 }
 
 void draw() {
@@ -83,8 +86,57 @@ popMatrix();
     scale(100);
     model.draw();
     popMatrix();
-
+    
+    pushMatrix();
+    translate(-100, -20, 0);
+    fill(100);
+    piirraKappale1(1, 100, 6, new Point3d(0, 0, 0), new Point3d(0, 40, 0), img); 
+    popMatrix();
 }
+
+ void piirraKappale1(float ylaSade, float alaSade, int sivumaara, Point3d ylaKeskipiste, Point3d alaKeskipiste, PImage tekstuuri){
+  float kulma1 = 0; 
+  float kulma2 = 0; 
+  
+  int ylaPiste1x = 0;
+  int ylaPiste1z = 0;
+  int ylaPiste2x = 0;
+  int ylaPiste2z = 0;
+  int alaPiste1x = 0;
+  int alaPiste1z = 0;
+  int alaPiste2x = 0;
+  int alaPiste2z = 0;
+  
+  textureMode(NORMAL);
+  
+  for (int sivunumero = 0; sivunumero < sivumaara; ++sivunumero) {
+      kulma1 = sivunumero * 2.0 * PI / sivumaara;
+      kulma2 = (sivunumero + 1) * 2.0 * PI / sivumaara;
+      println(kulma1);
+      println(kulma2);
+      
+      ylaPiste1x = ylaKeskipiste.x + (int)(sin(kulma1) * ylaSade);
+      ylaPiste1z = ylaKeskipiste.z + (int)(cos(kulma1) * ylaSade);
+      ylaPiste2x = ylaKeskipiste.x + (int)(sin(kulma2) * ylaSade); 
+      ylaPiste2z = ylaKeskipiste.z + (int)(cos(kulma2) * ylaSade); 
+      alaPiste1x = ylaKeskipiste.x + (int)(sin(kulma1) * alaSade);
+      alaPiste1z = ylaKeskipiste.z + (int)(cos(kulma1) * alaSade); 
+      alaPiste2x = ylaKeskipiste.x + (int)(sin(kulma2) * alaSade);
+      alaPiste2z = ylaKeskipiste.z + (int)(cos(kulma2) * alaSade);
+      
+      beginShape();
+      texture(tekstuuri);
+      
+      vertex(ylaPiste2x, ylaKeskipiste.y, ylaPiste2z, 1, 0);
+      vertex(ylaPiste1x, ylaKeskipiste.y, ylaPiste1z, 0, 0);
+      vertex(alaPiste1x, alaKeskipiste.y, alaPiste1z, 0, 1);
+      vertex(alaPiste2x, alaKeskipiste.y, alaPiste2z, 1, 1);
+      
+      endShape();
+      
+  }
+    
+} 
 
 void piirraKappale(float ylaSade, float alaSade, float korkeus, int sivut) {
     float kulma = 0;
