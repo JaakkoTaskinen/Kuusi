@@ -1,13 +1,13 @@
-<<<<<<< HEAD
+//<<<<<<< HEAD
 boolean himmenee = true;
 boolean kirkastuu = false;
 float vari = 255;
-=======
+//=======
 import saito.objloader.*;
 
 OBJModel model;
 
->>>>>>> 00902b4a74916f2b9bfba1c94ee31651d530a1d5
+//>>>>>>> 00902b4a74916f2b9bfba1c94ee31651d530a1d5
 void setup() {
 size(640, 660, P3D);
 model = new OBJModel(this, "possu.obj", "relative", TRIANGLES);
@@ -31,19 +31,33 @@ camera( 0, -mouseY, mouseY+600, // eyeX, eyeY, eyeZ
 rotateY( mouseX / 100.0 );
 
 //piirretään kuusi
+pushMatrix();
 translate(0, 0, 0);
 fill(0, 105, 0);
 piirraKappale(1, 40, 80, 12); 
 piirraKappale(1, 45, 130, 12); 
 piirraKappale(1, 50, 180, 12); 
+popMatrix();
 
+//piirretään kuusen runko
+pushMatrix();
 translate(0, 180, 0);
 fill(139, 69, 19);
 piirraKappale(20, 25, 30, 24);
+popMatrix();
+
+//piirretään maa
+pushMatrix();
+translate(0, 210, 0);
+fill(255);
+piirraKappale(2000, 2000, 1, 60);
+popMatrix();
+
 
 //piirretään paketti
-translate(-250, 10, 0);
-if(vari == 200){
+pushMatrix();
+translate(0, -20, 0);
+if(vari == 190){
  himmenee = false;
  kirkastuu = true;
 }
@@ -59,19 +73,14 @@ if(kirkastuu) {
 }
 
  fill(vari);
-piirraKappale(50, 50, 50, 4); 
-
-
-//piirretään maa
-translate(0, 80, 0);
-fill(255);
-piirraKappale(2000, 2000, 1, 60);
+piirraKappale(10, 10, 20, 8); 
+popMatrix();
 
 //piirretään possu
     pushMatrix();
     model.enableTexture();
-    translate(200, 0, 50);
-    scale(200);
+    translate(-100, 210, 50);
+    scale(100);
     model.draw();
     popMatrix();
 
