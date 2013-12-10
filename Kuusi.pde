@@ -17,6 +17,24 @@ OBJModel model2;
  OBJModel model4;
 OBJModel model5;
 
+//lumiparametreja
+int           depth = 14; 
+int           lumipallojenLkm = 3500; 
+Lumisade[]    tabLumisade = new Lumisade[lumipallojenLkm];
+Lumisade[]    tabLumisade1 = new Lumisade[lumipallojenLkm];
+int           lumiNopeus = 7;
+boolean       clearScreen = true;
+int           taille = 1;
+int           transparency = 255;
+int           rotationMode = 3; //ei hajuakaan mikä tää on?!
+float         angle = 0;
+float         delta = radians(0.25);
+//musiikkia varten parametreja
+import ddf.minim.*; //musiikkisoitinkirjasto
+AudioPlayer player; //soitin
+Minim minim;
+int paiva = 0;
+
 void setup() {
 
   size(640, 660, P3D);
@@ -29,7 +47,15 @@ void setup() {
   neulat = loadImage("neula.jpg");
   minion = loadImage("tausta.jpg");
 
-
+  for(int nb=0; nb<lumipallojenLkm; nb++) {
+    tabLumisade[nb] = new Lumisade(random(-2*width,2*width),random(-2*height,2*height),
+                               random(depth*255),random(1,lumiNopeus));
+    tabLumisade1[nb] = new Lumisade(random(-2*width,2*width),random(-2*height,2*height),
+                                random(-depth*255),random(1,lumiNopeus));
+  }
+   minim = new Minim(this); //soitin
+  player = minim.loadFile("joululaulu.wav", 2048); //joulukappale
+  player.play(); //aloittaa soittamisen 
 }
 
 void draw() {
@@ -53,6 +79,23 @@ camera( 0, -mouseY - 100, mouseY+600, // eyeX, eyeY, eyeZ
 0.0, 0.0, 10.0); // upX, upY, upZ
 rotateY( mouseX / 100.0 );
 
+
+//piirretaan lunta:
+if(rotationMode==1) {
+    angle += delta;
+  }
+ /* if(rotationMode==2) {
+    angle -= delta;
+  }*/
+  rotateZ(angle);
+  for(int nb=0; nb<lumipallojenLkm; nb++) {
+    tabLumisade[nb].aff();
+    tabLumisade[nb].lumiAnimaatio();
+  } 
+ for(int nb=0; nb<lumipallojenLkm; nb++) {
+    tabLumisade1[nb].aff();
+    tabLumisade1[nb].lumiAnimaatio();
+  } 
 
 //piirretään paketti
 pushMatrix();
@@ -230,6 +273,21 @@ void piirraMaa() {
  endShape(); 
   
   
+}
+
+void stop() {
+  player.close();
+  minim.stop();
+  super.stop();
+}
+
+void keyPressed() {
+  if (key == ' ') {
+    if (paiva < 25) {
+      paiva ++;
+      println("space bar pressed " + paiva);
+    }
+  }  
 }
 
 
