@@ -3,6 +3,10 @@ boolean himmenee = true;
 boolean kirkastuu = false;
 float vari = 255;
 PImage img;
+<<<<<<< HEAD
+=======
+PImage neulat;
+>>>>>>> 45d7c0645d5cae457ad7f5018d93ab5d7ed6c982
 //=======
 import saito.objloader.*;
 
@@ -11,9 +15,18 @@ OBJModel model;
 
 //>>>>>>> 00902b4a74916f2b9bfba1c94ee31651d530a1d5
 void setup() {
+<<<<<<< HEAD
 size(640, 660, P3D);
 model = new OBJModel(this, "possu.obj", "relative", TRIANGLES);
 img = loadImage("tausta.jpg");
+=======
+  size(640, 660, P3D);
+  model = new OBJModel(this, "possu.obj", "relative", TRIANGLES);
+  img = loadImage("lumi.jpg");
+  neulat = loadImage("neula.jpg");
+
+
+>>>>>>> 45d7c0645d5cae457ad7f5018d93ab5d7ed6c982
 }
 
 void draw() {
@@ -21,6 +34,13 @@ void draw() {
 model.disableTexture();
 background(0);
 lights();
+//ambientLight(155, 155, 155);
+directionalLight(255, 255, 255, 1, 1, 1);
+//spotLight(255, 255, 255, width/2, height/2, 400, 0, 0, -1, PI/4, 2);
+
+
+
+
 
 //translate(width / 2, height / 2);
 rotateY(map(mouseX, 0, width, 0, PI));
@@ -36,24 +56,24 @@ rotateY( mouseX / 100.0 );
 //piirretään kuusi
 pushMatrix();
 translate(0, 0, 0);
-fill(0, 105, 0);
-piirraKappale(1, 40, 80, 12); 
-piirraKappale(1, 45, 130, 12); 
-piirraKappale(1, 50, 180, 12); 
+//fill(0, 105, 0);
+piirraKappale(1, 40, 80, 12, neulat); 
+piirraKappale(1, 45, 130, 12, neulat); 
+piirraKappale(1, 50, 180, 12, neulat); 
 popMatrix();
 
 //piirretään kuusen runko
 pushMatrix();
 translate(0, 180, 0);
 fill(139, 69, 19);
-piirraKappale(20, 25, 30, 24);
+piirraKappale(20, 25, 30, 24, img);
 popMatrix();
 
 //piirretään maa
 pushMatrix();
 translate(0, 210, 0);
 fill(255);
-piirraKappale(2000, 2000, 1, 60);
+piirraKappale(2000, 2000, 1, 60, img);
 popMatrix();
 
 
@@ -75,9 +95,9 @@ if(kirkastuu) {
   vari = vari + 1;
 }
 
- fill(vari);
-piirraKappale(10, 10, 20, 8); 
-popMatrix();
+  fill(vari);
+  piirraKappale(10, 10, 20, 8, img); 
+  popMatrix();
 
 //piirretään possu
     pushMatrix();
@@ -86,6 +106,7 @@ popMatrix();
     scale(100);
     model.draw();
     popMatrix();
+<<<<<<< HEAD
     
     pushMatrix();
     translate(-100, -20, 0);
@@ -139,10 +160,19 @@ popMatrix();
 } 
 
 void piirraKappale(float ylaSade, float alaSade, float korkeus, int sivut) {
+=======
+      
+    piirraMaa();
+
+}
+
+void piirraKappale(float ylaSade, float alaSade, float korkeus, int sivut, PImage tekstuuri) {
+>>>>>>> 45d7c0645d5cae457ad7f5018d93ab5d7ed6c982
     float kulma = 0;
     float kulmanKasvu = TWO_PI / sivut;
     beginShape(QUAD_STRIP);
     for (int i = 0; i < sivut + 1; ++i) {
+      texture(tekstuuri);
       vertex(ylaSade*cos(kulma), 0, ylaSade*sin(kulma));
       vertex(alaSade*cos(kulma), korkeus, alaSade*sin(kulma));
       kulma += kulmanKasvu;
@@ -153,6 +183,7 @@ void piirraKappale(float ylaSade, float alaSade, float korkeus, int sivut) {
     if (ylaSade != 0) {
         kulma = 0;
         beginShape(TRIANGLE_FAN);
+        texture(tekstuuri);
 
     // Center point
     vertex(0, 0, 0);
@@ -167,6 +198,7 @@ void piirraKappale(float ylaSade, float alaSade, float korkeus, int sivut) {
 if (alaSade != 0) {
   kulma = 0;
   beginShape(TRIANGLE_FAN);
+  texture(tekstuuri);
 
 // Center point
   vertex(0, korkeus, 0);
@@ -177,4 +209,23 @@ if (alaSade != 0) {
   endShape();
 }
 }
+
+void piirraMaa() {
+  
+ //fill(200);
+ noFill();
+ noTint();
+ textureMode(NORMAL);
+ beginShape();
+ texture(img);
+ vertex(800, 200, 800, 0, 0);
+ vertex(800, 200, -800, 0, 1);
+ vertex(-800, 200, -800, 1,1);
+ vertex(-800, 200, 800, 1, 0);
+ endShape(); 
+  
+  
+}
+
+
 
