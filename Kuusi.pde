@@ -12,11 +12,19 @@ import saito.objloader.*;
 
 
 OBJModel model;
+OBJModel model2;
+ OBJModel model3;
+ OBJModel model4;
+OBJModel model5;
 
 void setup() {
 
   size(640, 660, P3D);
   model = new OBJModel(this, "possu.obj", "relative", TRIANGLES);
+     model2 = new OBJModel(this, "lumiukko.obj", "relative", TRIANGLES);
+   model3 = new OBJModel(this, "lahja2.obj", "relative", TRIANGLES);
+   model4 = new OBJModel(this, "talo_punainen.obj", "relative", TRIANGLES);
+  model5 = new OBJModel(this, "numb7.obj", "relative", TRIANGLES);
   img = loadImage("lumi.jpg");
   neulat = loadImage("neula.jpg");
   minion = loadImage("tausta.jpg");
@@ -74,6 +82,34 @@ if(kirkastuu) {
     translate(-100, 0, 50);
     scale(100);
     model.draw();
+    popMatrix();
+    
+     pushMatrix();
+    model2.enableTexture();
+    translate(-200, 30, 140);
+    scale(100);
+    model2.draw();
+    popMatrix();
+    
+        pushMatrix();
+    model3.enableTexture();
+    translate(-200, 0, -100);
+    scale(100);
+    model3.draw();
+    popMatrix();
+    
+        pushMatrix();
+    model4.enableTexture();
+    translate(200, 50, 100);
+    scale(100);
+    model4.draw();
+    popMatrix();
+    
+        pushMatrix();
+    model5.enableTexture();
+    translate(-70, 100, 200);
+    scale(100);
+    model5.draw();
     popMatrix();
     
     //piirretään kuusi
