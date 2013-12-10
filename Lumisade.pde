@@ -1,13 +1,13 @@
 //Luokka lumisateelle
 class Lumisade {
   float x, y, z;
-  float dZ;
+  float dY;
    
-  Lumisade(float coordX, float coordY, float coordZ, float speedZ) {
+  Lumisade(float coordX, float coordY, float coordZ, float speedY) {
     x  = coordX; 
     y  = coordY; 
     z  = coordZ; 
-    dZ = speedZ;
+    dY = speedY;
   }
    
   //lumipallot 
@@ -19,8 +19,8 @@ class Lumisade {
   }
   
   void lumiAnimaatio() {
-    z = z + dZ;
-    if( z >= 1100)
-      z = -1100;
+    y = y + dY;
+    if( y >= 1100)
+      y = -1100;
   }
 }
