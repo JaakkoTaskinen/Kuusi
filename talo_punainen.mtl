@@ -17,7 +17,7 @@ Ks 0.333 0.333 0.333
 Ns 0
 d 1
 Tr 1
-map_Kd talo_punainen_Textures/GAF_Country_Mansion.PNG
+map_Kd talo_punainen_Textures/GAF_Country_Mansion.jpg
 
 newmtl Glass_Blue_Tint
 Ka 0.0352941 0.686275 0.945098
@@ -26,7 +26,7 @@ Ks 0.333 0.333 0.333
 Ns 0
 d 0.48
 Tr 0.48
-map_Kd talo_punainen_Textures/Glass_Blue_Tint.PNG
+map_Kd talo_punainen_Textures/Glass_Blue_Tint.jpg
 
 newmtl Terrazzo
 Ka 0.568627 0.568627 0.568627
@@ -35,7 +35,7 @@ Ks 0.333 0.333 0.333
 Ns 0
 d 1
 Tr 1
-map_Kd talo_punainen_Textures/Terrazzo.PNG
+map_Kd talo_punainen_Textures/Terrazzo.jpg
 
 newmtl Material1
 Ka 0 0 0
@@ -52,6 +52,6 @@ Ks 0.333 0.333 0.333
 Ns 0
 d 1
 Tr 1
-map_Kd talo_punainen_Textures/Stone_Granite_Midnite.PNG
+map_Kd talo_punainen_Textures/Stone_Granite_Midnite.jpg
 
 #EOF

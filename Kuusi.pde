@@ -8,11 +8,17 @@ PImage neulat;
 import saito.objloader.*;
 
 OBJModel model;
+OBJModel model2;
+OBJModel model3;
+OBJModel model4;
 
 //>>>>>>> 00902b4a74916f2b9bfba1c94ee31651d530a1d5
 void setup() {
   size(640, 660, P3D);
   model = new OBJModel(this, "possu.obj", "relative", TRIANGLES);
+  model2 = new OBJModel(this, "lumiukko.obj", "relative", TRIANGLES);
+  model3 = new OBJModel(this, "lahja2.obj", "relative", TRIANGLES);
+  model4 = new OBJModel(this, "talo_punainen.obj", "relative", TRIANGLES);
   img = loadImage("lumi.jpg");
   neulat = loadImage("neula.jpg");
 
@@ -96,6 +102,27 @@ if(kirkastuu) {
     scale(100);
     model.draw();
     popMatrix();
+    
+    pushMatrix();
+    model2.enableTexture();
+    translate(200, 210, 50);
+    scale(100);
+    model2.draw();
+    popMatrix();
+  
+    pushMatrix();
+    model3.enableTexture();
+    translate(-100, 210, 50);
+    scale(300);
+    model3.draw();
+    popMatrix();  
+    
+    pushMatrix();
+    model4.enableTexture();
+    translate(-100, 210, 50);
+    scale(100);
+    model4.draw();
+    popMatrix();  
       
     piirraMaa();
 
