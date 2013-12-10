@@ -11,6 +11,8 @@ OBJModel model;
 OBJModel model2;
 OBJModel model3;
 OBJModel model4;
+OBJModel model5;
+
 
 //>>>>>>> 00902b4a74916f2b9bfba1c94ee31651d530a1d5
 void setup() {
@@ -19,6 +21,8 @@ void setup() {
   model2 = new OBJModel(this, "lumiukko.obj", "relative", TRIANGLES);
   model3 = new OBJModel(this, "lahja2.obj", "relative", TRIANGLES);
   model4 = new OBJModel(this, "talo_punainen.obj", "relative", TRIANGLES);
+  model5 = new OBJModel(this, "numb7.obj", "relative", TRIANGLES);
+
   img = loadImage("lumi.jpg");
   neulat = loadImage("neula.jpg");
 
@@ -101,6 +105,7 @@ if(kirkastuu) {
     translate(-100, 210, 50);
     scale(100);
     model.draw();
+    model.disableTexture();
     popMatrix();
     
     pushMatrix();
@@ -108,6 +113,7 @@ if(kirkastuu) {
     translate(200, 210, 50);
     scale(100);
     model2.draw();
+    model2.disableTexture();
     popMatrix();
   
     pushMatrix();
@@ -115,15 +121,26 @@ if(kirkastuu) {
     translate(-100, 210, 50);
     scale(300);
     model3.draw();
+    model3.disableTexture();  
     popMatrix();  
     
     pushMatrix();
     model4.enableTexture();
     translate(-100, 210, 50);
     scale(100);
-    model4.draw();
+    model4.draw();   
+    model4.disableTexture();  
     popMatrix();  
-      
+    
+    pushMatrix();
+    model5.enableTexture();
+    translate(-500, 110, 50);
+    scale(400);
+    texture(neulat);
+    model5.draw();
+    model5.disableTexture();  
+    popMatrix();
+    
     piirraMaa();
 
 }
