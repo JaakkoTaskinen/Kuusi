@@ -1,5 +1,5 @@
 //Luokka lumisateelle
-class Lumisade {
+/*class Lumisade {
   float x, y, z;
   float dZ;
    
@@ -23,4 +23,4 @@ class Lumisade {
     if( z>=0)
       z = -1023.0;
   }
-}
+}*/

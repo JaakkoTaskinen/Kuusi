@@ -1,32 +1,27 @@
-//<<<<<<< HEAD
+
 boolean himmenee = true;
 boolean kirkastuu = false;
 float vari = 255;
 PImage img;
-<<<<<<< HEAD
-=======
+PImage minion;
+
 PImage neulat;
->>>>>>> 45d7c0645d5cae457ad7f5018d93ab5d7ed6c982
-//=======
+ 
+
 import saito.objloader.*;
 
 
 OBJModel model;
 
-//>>>>>>> 00902b4a74916f2b9bfba1c94ee31651d530a1d5
 void setup() {
-<<<<<<< HEAD
-size(640, 660, P3D);
-model = new OBJModel(this, "possu.obj", "relative", TRIANGLES);
-img = loadImage("tausta.jpg");
-=======
+
   size(640, 660, P3D);
   model = new OBJModel(this, "possu.obj", "relative", TRIANGLES);
   img = loadImage("lumi.jpg");
   neulat = loadImage("neula.jpg");
+  minion = loadImage("tausta.jpg");
 
 
->>>>>>> 45d7c0645d5cae457ad7f5018d93ab5d7ed6c982
 }
 
 void draw() {
@@ -37,9 +32,6 @@ lights();
 //ambientLight(155, 155, 155);
 directionalLight(255, 255, 255, 1, 1, 1);
 //spotLight(255, 255, 255, width/2, height/2, 400, 0, 0, -1, PI/4, 2);
-
-
-
 
 
 //translate(width / 2, height / 2);
@@ -70,11 +62,11 @@ piirraKappale(20, 25, 30, 24, img);
 popMatrix();
 
 //piirretään maa
-pushMatrix();
+/*pushMatrix();
 translate(0, 210, 0);
 fill(255);
 piirraKappale(2000, 2000, 1, 60, img);
-popMatrix();
+popMatrix();*/
 
 
 //piirretään paketti
@@ -106,13 +98,14 @@ if(kirkastuu) {
     scale(100);
     model.draw();
     popMatrix();
-<<<<<<< HEAD
     
     pushMatrix();
     translate(-100, -20, 0);
     fill(100);
-    piirraKappale1(1, 100, 6, new Point3d(0, 0, 0), new Point3d(0, 40, 0), img); 
+    piirraKappale1(1, 100, 6, new Point3d(0, 0, 0), new Point3d(0, 40, 0), minion); 
     popMatrix();
+    
+    piirraMaa();
 }
 
  void piirraKappale1(float ylaSade, float alaSade, int sivumaara, Point3d ylaKeskipiste, Point3d alaKeskipiste, PImage tekstuuri){
@@ -159,15 +152,14 @@ if(kirkastuu) {
     
 } 
 
-void piirraKappale(float ylaSade, float alaSade, float korkeus, int sivut) {
-=======
+/*void piirraKappale(float ylaSade, float alaSade, float korkeus, int sivut) {
+
       
     piirraMaa();
 
-}
+}*/
 
 void piirraKappale(float ylaSade, float alaSade, float korkeus, int sivut, PImage tekstuuri) {
->>>>>>> 45d7c0645d5cae457ad7f5018d93ab5d7ed6c982
     float kulma = 0;
     float kulmanKasvu = TWO_PI / sivut;
     beginShape(QUAD_STRIP);
