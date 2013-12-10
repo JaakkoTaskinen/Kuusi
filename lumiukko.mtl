@@ -1,0 +1,61 @@
+# Alias Wavefront MTL File Exported from SketchUp
+# with OBJexporter (c) 2013 TIG
+# Made for 'lumiukko.obj'
+
+newmtl Default_Material
+Ka 1 1 1
+Kd 1 1 1
+Ks 0.333 0.333 0.333
+Ns 0
+d 1
+Tr 1
+
+newmtl Color_009
+Ka 0 0 0
+Kd 0 0 0
+Ks 0.333 0.333 0.333
+Ns 0
+d 1
+Tr 1
+
+newmtl Color_I01
+Ka 0 0 1
+Kd 0 0 1
+Ks 0.333 0.333 0.333
+Ns 0
+d 1
+Tr 1
+
+newmtl Color_C12
+Ka 0.6 0.356863 0.117647
+Kd 0.6 0.356863 0.117647
+Ks 0.333 0.333 0.333
+Ns 0
+d 1
+Tr 1
+
+newmtl Color_E03
+Ka 1 1 0.396078
+Kd 1 1 0.396078
+Ks 0.333 0.333 0.333
+Ns 0
+d 1
+Tr 1
+
+newmtl Color_000
+Ka 1 1 1
+Kd 1 1 1
+Ks 0.333 0.333 0.333
+Ns 0
+d 1
+Tr 1
+
+newmtl Color_C01
+Ka 1 0.498039 0
+Kd 1 0.498039 0
+Ks 0.333 0.333 0.333
+Ns 0
+d 1
+Tr 1
+
+#EOF
