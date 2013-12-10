@@ -1,13 +1,24 @@
+<<<<<<< HEAD
 boolean himmenee = true;
 boolean kirkastuu = false;
 float vari = 255;
+=======
+import saito.objloader.*;
+
+OBJModel model;
+
+>>>>>>> 00902b4a74916f2b9bfba1c94ee31651d530a1d5
 void setup() {
 size(640, 660, P3D);
+model = new OBJModel(this, "possu.obj", "relative", TRIANGLES);
 }
 
 void draw() {
+ 
+model.disableTexture();
 background(0);
 lights();
+
 //translate(width / 2, height / 2);
 rotateY(map(mouseX, 0, width, 0, PI));
 rotateZ(map(mouseY, 0, height, 0, -PI));
@@ -56,6 +67,13 @@ translate(0, 80, 0);
 fill(255);
 piirraKappale(2000, 2000, 1, 60);
 
+//piirretään possu
+    pushMatrix();
+    model.enableTexture();
+    translate(200, 0, 50);
+    scale(200);
+    model.draw();
+    popMatrix();
 
 }
 

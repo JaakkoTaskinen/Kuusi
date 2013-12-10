@@ -1,0 +1,22 @@
+# Alias Wavefront MTL File Exported from SketchUp
+# with OBJexporter (c) 2013 TIG
+# Made for 'possu.obj'
+
+newmtl Default_Material
+Ka 1 1 1
+Kd 1 1 1
+Ks 0.333 0.333 0.333
+Ns 0
+d 1
+Tr 1
+
+newmtl Carpet_Loop_Pattern
+Ka 0.65098 0.52549 0.466667
+Kd 0.65098 0.52549 0.466667
+Ks 0.333 0.333 0.333
+Ns 0
+d 1
+Tr 1
+map_Kd possu_Textures/Carpet_Loop_Pattern.PNG
+
+#EOF
