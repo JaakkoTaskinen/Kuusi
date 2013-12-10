@@ -130,7 +130,7 @@ if(kirkastuu) {
      pushMatrix();
     model2.enableTexture();
     translate(-200, 30, 140);
-    scale(100);
+    scale(20);
     model2.draw();
     popMatrix();
     
@@ -152,7 +152,7 @@ if(kirkastuu) {
     model5.enableTexture();
     translate(-70, 100, 200);
     scale(100);
-    model5.draw();
+   // model5.draw();
     popMatrix();
     
     //piirretään kuusi
