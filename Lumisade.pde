@@ -20,7 +20,7 @@ class Lumisade {
   
   void lumiAnimaatio() {
     z = z + dZ;
-    if( z>=0)
-      z = -1023.0;
+    if( z >= 1100)
+      z = -1100;
   }
 }
