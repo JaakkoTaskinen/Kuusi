@@ -22,7 +22,7 @@ OBJModel numero;
 
 //lumiparametreja
 int           depth = 14; 
-int           lumipallojenLkm = 3500; 
+int           lumipallojenLkm = 1500; 
 Lumisade[]    tabLumisade = new Lumisade[lumipallojenLkm];
 Lumisade[]    tabLumisade1 = new Lumisade[lumipallojenLkm];
 int           lumiNopeus = 7;
@@ -131,7 +131,7 @@ void draw() {
     //piirretään kuusen runko
     pushMatrix();
     translate(0, 0, 0);
-    fill(139, 69, 19);
+  //  fill(139, 69, 19);
     kappale.piirraKappale1(20, 15, 20, new Point3d(0, -30, 0), new Point3d(0, 0, 0), minion);
     popMatrix();
   
@@ -145,13 +145,13 @@ void draw() {
     if (paiva > 2) {
       piirretaanPaketti();
     }
-    tarkistaPaiva();
+   //tarkistaPaiva();
     
     //piirretään possu
     if (paiva > 3) {
       piirretaanPossu();
     }
-    if (paiva >4) {
+    if (paiva > 4) {
       piirretaanLumiukko();
     }
     if(paiva > 5){
@@ -247,7 +247,6 @@ void draw() {
  }*/
 
 void piirraMaa() {
-
   //fill(200);
   noFill();
   noTint();
@@ -315,7 +314,7 @@ void piirretaanLunta() {
 void piirretaanPaketti() {
   pushMatrix();
       translate(-210, 0, 0);
-      if (vari == 190) {
+     /* if (vari == 190) {
         himmenee = false;
         kirkastuu = true;
       }
@@ -331,7 +330,7 @@ void piirretaanPaketti() {
       }
     
       fill(vari);
-      kappale.piirraKappale1(40, 40, 4, new Point3d(0, -40, 0), new Point3d(0, 0, 0), minion);
+*/    kappale.piirraKappale1(40, 40, 4, new Point3d(0, -40, 0), new Point3d(0, 0, 0), minion);
       popMatrix(); 
 }
 void piirretaanPossu() {
@@ -380,6 +379,7 @@ void keyPressed() {
     }
     if (aloitettu && paiva < 25) {
       paiva ++;
+      tarkistaPaiva();
       println("space bar pressed " + paiva);
     }
   }
