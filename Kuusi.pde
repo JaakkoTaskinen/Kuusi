@@ -5,6 +5,12 @@ float vari = 255;
 PImage img;
 PImage minion;
 PImage neulat;
+PImage taustakuva;
+PFont fontti;
+
+ArrayList fallingChars = new ArrayList();  // Create an empty ArrayList;
+
+boolean aloitettu = false;
 
 import saito.objloader.*;
 
@@ -33,6 +39,7 @@ Minim minim;
 int paiva = 0;
 Kappale kappale;
 
+
 void setup() {
 
   size(640, 660, P3D);
@@ -45,6 +52,11 @@ void setup() {
   img = loadImage("lumi.jpg");
   neulat = loadImage("neula.jpg");
   minion = loadImage("tausta.jpg");
+  taustakuva = loadImage("taustakuva2.jpg");
+  fontti = loadFont("BookAntiqua-Bold-48.vlw");
+  
+  for( int i = 0; i< 60; i++)      // now add some elements for initial seeding 
+    CreateChar(1);
 
   for (int nb=0; nb<lumipallojenLkm; nb++) {
     tabLumisade[nb] = new Lumisade(random(-2*width, 2*width), random(-2*height, 2*height), 
@@ -58,113 +70,149 @@ void setup() {
 }
 
 void draw() {
-
-  model.disableTexture();
-  background(0);
-  lights();
-  //ambientLight(155, 155, 155);
-  directionalLight(255, 255, 255, 1, 1, 1);
-  //spotLight(255, 255, 255, width/2, height/2, 400, 0, 0, -1, PI/4, 2);
-
-
-  //translate(width / 2, height / 2);
-  rotateY(map(mouseX, 0, width, 0, PI));
-  rotateZ(map(mouseY, 0, height, 0, -PI));
-  noStroke();
-
-  perspective(PI/3.0, float(width)/float(height), 1, 10000);
-  camera( 0, -mouseY - 100, mouseY+600, // eyeX, eyeY, eyeZ
-  0, 0, 200, // centerX, centerY, centerZ
-  0.0, 0.0, 10.0); // upX, upY, upZ
-  rotateY( mouseX / 100.0 );
-
-
-  //piirretaan lunta:
-  if (rotationMode==1) {
-    angle += delta;
+  if (!aloitettu) {
+    background(255);
+    fill(240);
+    scale(0.5);
+    image(taustakuva, -20, 0);
+    scale(1/0.5);
+    textFont(fontti, 42);
+    textAlign(CENTER);
+    text("Tervetuloa Joulumaahan!", 320, 100);
+    textFont(fontti, 28);
+    text("Joulumaahan ilmestyy joulukalenterin\ntavoin joka päivä jotain uutta,\nkun painat välilyöntiä.\nPeli myös alkaa välilyönnillä.", 320, 180);
+    text("Mukavaa Joulun odotusta!", 320, 350);
+    
+  //  background(0);
+  for (int i = fallingChars.size()-1; i >= 0; i--)
+  {   // An ArrayList doesn't know what it is storing so we have to cast the object coming out
+      fallingStar fc = (fallingStar) fallingChars.get(i);
+      if (fc.notVisible() ) fallingChars.remove(i);
+      else
+      {
+        fc.fall();
+        fc.display();
+      }
   }
-  /* if(rotationMode==2) {
-   angle -= delta;
-   }*/
-  rotateZ(angle);
-  for (int nb=0; nb<lumipallojenLkm; nb++) {
-    tabLumisade[nb].aff();
-    tabLumisade[nb].lumiAnimaatio();
-  } 
-  for (int nb=0; nb<lumipallojenLkm; nb++) {
-    tabLumisade1[nb].aff();
-    tabLumisade1[nb].lumiAnimaatio();
-  } 
-
-  //piirretään paketti
-  pushMatrix();
-  translate(-210, 0, 0);
-  if (vari == 190) {
-    himmenee = false;
-    kirkastuu = true;
+  if ((frameCount & 2) > 0 )
+  {
+    int x = (int)random(4);
+    for (int j = 0; j < x; j++)
+      {
+          CreateChar(4);  // top 1/4th
+          CreateChar(8);  // top 1/8th
+      }
   }
-  if (vari == 255) {
-    himmenee = true;
-    kirkastuu = false;
   }
-  if (himmenee) {
-    vari = vari - 1;
-  }
-  if (kirkastuu) {
-    vari = vari + 1;
-  }
-
-  fill(vari);
-  kappale.piirraKappale1(40, 40, 4, new Point3d(0, -40, 0), new Point3d(0, 0, 0), minion);
-  popMatrix();
-
-  tarkistaPaiva();
+  else {
   
-  //piirretään possu
-  pushMatrix();
-  model.enableTexture();
-  translate(-100, 0, 50);
-  scale(100);
-  model.draw();
-  popMatrix();
-
-  pushMatrix();
-  model2.enableTexture();
-  translate(-200, 30, 140);
-  scale(20);
-  model2.draw();
-  popMatrix();
-
-  pushMatrix();
-  model3.enableTexture();
-  translate(-200, 0, -100);
-  scale(100);
-  model3.draw();
-  popMatrix();
-
-  pushMatrix();
-  model4.enableTexture();
-  translate(200, 50, 100);
-  scale(100);
-  model4.draw();
-  popMatrix();
-
-  //piirretään kuusi
-  pushMatrix();
-  translate(0, 0, 0);
-  kappale.piirraKappale1(60, 1, 20, new Point3d(0, -250, 0), new Point3d(0, -150, 0), neulat); 
-  kappale.piirraKappale1(65, 1, 20, new Point3d(0, -250, 0), new Point3d(0, -90, 0), neulat); 
-  kappale.piirraKappale1(70, 1, 20, new Point3d(0, -250, 0), new Point3d(0, -20, 0), neulat); 
-  popMatrix();
-
-  //piirretään kuusen runko
-  pushMatrix();
-  translate(0, 0, 0);
-  fill(139, 69, 19);
-  kappale.piirraKappale1(20, 15, 20, new Point3d(0, -30, 0), new Point3d(0, 0, 0), minion);
-  popMatrix();
-
-  piirraMaa();
+    model.disableTexture();
+    background(0);
+    lights();
+    //ambientLight(155, 155, 155);
+    directionalLight(255, 255, 255, 1, 1, 1);
+    //spotLight(255, 255, 255, width/2, height/2, 400, 0, 0, -1, PI/4, 2);
+  
+  
+    //translate(width / 2, height / 2);
+    rotateY(map(mouseX, 0, width, 0, PI));
+    rotateZ(map(mouseY, 0, height, 0, -PI));
+    noStroke();
+  
+    perspective(PI/3.0, float(width)/float(height), 1, 10000);
+    camera( 0, -mouseY - 100, mouseY+600, // eyeX, eyeY, eyeZ
+    0, 0, 200, // centerX, centerY, centerZ
+    0.0, 0.0, 10.0); // upX, upY, upZ
+    rotateY( mouseX / 100.0 );
+  
+  
+    //piirretaan lunta:
+    if (rotationMode==1) {
+      angle += delta;
+    }
+    /* if(rotationMode==2) {
+     angle -= delta;
+     }*/
+    rotateZ(angle);
+    for (int nb=0; nb<lumipallojenLkm; nb++) {
+      tabLumisade[nb].aff();
+      tabLumisade[nb].lumiAnimaatio();
+    } 
+    for (int nb=0; nb<lumipallojenLkm; nb++) {
+      tabLumisade1[nb].aff();
+      tabLumisade1[nb].lumiAnimaatio();
+    } 
+  
+    //piirretään paketti
+    pushMatrix();
+    translate(-210, 0, 0);
+    if (vari == 190) {
+      himmenee = false;
+      kirkastuu = true;
+    }
+    if (vari == 255) {
+      himmenee = true;
+      kirkastuu = false;
+    }
+    if (himmenee) {
+      vari = vari - 1;
+    }
+    if (kirkastuu) {
+      vari = vari + 1;
+    }
+  
+    fill(vari);
+    kappale.piirraKappale1(40, 40, 4, new Point3d(0, -40, 0), new Point3d(0, 0, 0), minion);
+    popMatrix();
+  
+    tarkistaPaiva();
+    
+    //piirretään possu
+    pushMatrix();
+    model.enableTexture();
+    translate(-100, 0, 50);
+    scale(100);
+    model.draw();
+    popMatrix();
+  
+    pushMatrix();
+    model2.enableTexture();
+    translate(-200, 30, 140);
+    scale(20);
+    model2.draw();
+    popMatrix();
+  
+    pushMatrix();
+    model3.enableTexture();
+    translate(-200, 0, -100);
+    scale(100);
+    model3.draw();
+    popMatrix();
+  
+    pushMatrix();
+    model4.enableTexture();
+    translate(200, 50, 100);
+    scale(100);
+    model4.draw();
+    popMatrix();
+  
+    //piirretään kuusi
+    pushMatrix();
+    translate(0, 0, 0);
+    kappale.piirraKappale1(60, 1, 20, new Point3d(0, -250, 0), new Point3d(0, -150, 0), neulat); 
+    kappale.piirraKappale1(65, 1, 20, new Point3d(0, -250, 0), new Point3d(0, -90, 0), neulat); 
+    kappale.piirraKappale1(70, 1, 20, new Point3d(0, -250, 0), new Point3d(0, -20, 0), neulat); 
+    popMatrix();
+  
+    //piirretään kuusen runko
+    pushMatrix();
+    translate(0, 0, 0);
+    fill(139, 69, 19);
+    kappale.piirraKappale1(20, 15, 20, new Point3d(0, -30, 0), new Point3d(0, 0, 0), minion);
+    popMatrix();
+  
+    piirraMaa();
+  }
 }
 
 /*void piirraKappale1(float alaSade, float ylaSade, int sivumaara, Point3d ylaKeskipiste, Point3d alaKeskipiste, PImage tekstuuri) {
@@ -306,7 +354,10 @@ void stop() {
 
 void keyPressed() {
   if (key == ' ') {
-    if (paiva < 25) {
+    if (!aloitettu) {
+     aloitettu = true; 
+    }
+    if (aloitettu && paiva < 25) {
       paiva ++;
       println("space bar pressed " + paiva);
     }
