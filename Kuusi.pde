@@ -4,12 +4,9 @@ boolean kirkastuu = false;
 float vari = 255;
 PImage img;
 PImage minion;
-
 PImage neulat;
 
-
 import saito.objloader.*;
-
 
 OBJModel model;
 OBJModel model2;
@@ -26,7 +23,7 @@ int           lumiNopeus = 7;
 boolean       clearScreen = true;
 int           taille = 1;
 int           transparency = 255;
-int           rotationMode = 3; //ei hajuakaan mikä tää on?!
+int           rotationMode = 3; 
 float         angle = 0;
 float         delta = radians(0.25);
 //musiikkia varten parametreja
@@ -34,15 +31,17 @@ import ddf.minim.*; //musiikkisoitinkirjasto
 AudioPlayer player; //soitin
 Minim minim;
 int paiva = 0;
+Kappale kappale;
 
 void setup() {
 
   size(640, 660, P3D);
+  kappale = new Kappale();
   model = new OBJModel(this, "possu.obj", "relative", TRIANGLES);
   model2 = new OBJModel(this, "lumiukko.obj", "relative", TRIANGLES);
   model3 = new OBJModel(this, "lahja2.obj", "relative", TRIANGLES);
   model4 = new OBJModel(this, "talo_punainen.obj", "relative", TRIANGLES);
-   numero = new OBJModel(this, "numb1.obj", "relative", TRIANGLES); 
+  numero = new OBJModel(this, "numb1.obj", "relative", TRIANGLES); 
   img = loadImage("lumi.jpg");
   neulat = loadImage("neula.jpg");
   minion = loadImage("tausta.jpg");
@@ -116,7 +115,7 @@ void draw() {
   }
 
   fill(vari);
-  piirraKappale1(40, 40, 4, new Point3d(0, -40, 0), new Point3d(0, 0, 0), minion);
+  kappale.piirraKappale1(40, 40, 4, new Point3d(0, -40, 0), new Point3d(0, 0, 0), minion);
   popMatrix();
 
   tarkistaPaiva();
@@ -153,22 +152,22 @@ void draw() {
   //piirretään kuusi
   pushMatrix();
   translate(0, 0, 0);
-  piirraKappale1(60, 1, 20, new Point3d(0, -250, 0), new Point3d(0, -150, 0), neulat); 
-  piirraKappale1(65, 1, 20, new Point3d(0, -250, 0), new Point3d(0, -90, 0), neulat); 
-  piirraKappale1(70, 1, 20, new Point3d(0, -250, 0), new Point3d(0, -20, 0), neulat); 
+  kappale.piirraKappale1(60, 1, 20, new Point3d(0, -250, 0), new Point3d(0, -150, 0), neulat); 
+  kappale.piirraKappale1(65, 1, 20, new Point3d(0, -250, 0), new Point3d(0, -90, 0), neulat); 
+  kappale.piirraKappale1(70, 1, 20, new Point3d(0, -250, 0), new Point3d(0, -20, 0), neulat); 
   popMatrix();
 
   //piirretään kuusen runko
   pushMatrix();
   translate(0, 0, 0);
   fill(139, 69, 19);
-  piirraKappale1(20, 15, 20, new Point3d(0, -30, 0), new Point3d(0, 0, 0), minion);
+  kappale.piirraKappale1(20, 15, 20, new Point3d(0, -30, 0), new Point3d(0, 0, 0), minion);
   popMatrix();
 
   piirraMaa();
 }
 
-void piirraKappale1(float alaSade, float ylaSade, int sivumaara, Point3d ylaKeskipiste, Point3d alaKeskipiste, PImage tekstuuri) {
+/*void piirraKappale1(float alaSade, float ylaSade, int sivumaara, Point3d ylaKeskipiste, Point3d alaKeskipiste, PImage tekstuuri) {
   float kulma1 = 0; 
   float kulma2 = 0; 
 
@@ -206,7 +205,7 @@ void piirraKappale1(float alaSade, float ylaSade, int sivumaara, Point3d ylaKesk
 
     endShape();
   }
-} 
+} */
 
 /*void piirraKappale(float ylaSade, float alaSade, float korkeus, int sivut, PImage tekstuuri) {
  float kulma = 0;
@@ -281,7 +280,7 @@ public void tarkistaPaiva() {
   numero = new OBJModel(this, "numb4.obj", "relative", TRIANGLES);
   break; 
   case 5: 
-  numero = new OBJModel(this, "numb5.obj", "relative", TRIANGLES);
+ // numero = new OBJModel(this, "numb5.obj", "relative", TRIANGLES);
   break; 
   case 6: 
   numero = new OBJModel(this, "numb6.obj", "relative", TRIANGLES);
