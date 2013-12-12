@@ -9,6 +9,7 @@ PImage taustakuva;
 PImage kaarna;
 PFont fontti;
 PImage tausta;
+boolean kappaleAloitettu = false;
 
 ArrayList fallingChars = new ArrayList();  // Create an empty ArrayList;
 
@@ -86,8 +87,8 @@ void setup() {
     random(-depth*255), random(1, lumiNopeus));
   }
   minim = new Minim(this); //soitin
-  player = minim.loadFile("joululaulu.wav", 2048); //joulukappale
-  player.play(); //aloittaa soittamisen
+  player = minim.loadFile("Joulumaa.mp3", 2048); //joulukappale
+  
 }
 
 void draw() {
@@ -122,7 +123,9 @@ void draw() {
     }
   }
   else {
-
+    if (!kappaleAloitettu) {
+       aloitaKappale(); 
+    }
     model.disableTexture();
     background(tausta);
     lights();
@@ -365,6 +368,7 @@ void piirraKirkko(){
     popMatrix();
 }
 
+<<<<<<< HEAD
 void piirraPallo1(int x, int y, int z) {
  pushMatrix();
  translate(x, y, z);
@@ -405,6 +409,12 @@ void piirraPallo5(int x, int y, int z) {
  popMatrix();
 }
 
+=======
+void aloitaKappale() {
+  kappaleAloitettu = true; 
+  player.play(); //aloittaa soittamisen 
+}
+>>>>>>> 56fca2d686a8804d4d3bdd4ec7c8d2dd8189631e
 
 
 void stop() {
