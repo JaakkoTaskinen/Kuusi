@@ -23,10 +23,6 @@ OBJModel model4;
 OBJModel luukku;
 OBJModel star;
 OBJModel kirkko;
-OBJModel pallo1;
-OBJModel pallo2;
-OBJModel pallo3;
-OBJModel pallo4;
 
 //lumiparametreja
 int           depth = 14; 
@@ -185,6 +181,10 @@ void draw() {
     if (paiva >8) {
       piirraStar();
     }
+    
+    if (paiva >9) {
+      piirraKirkko();
+    }
   }
 }
 
@@ -294,7 +294,7 @@ void piirretaanPossu(int k, int j, int n) {
 
 void piirretaanLumiukko() {
   pushMatrix();
-  translate(600, 30, 150);
+  translate(600, 0, 150);
   scale(20);
   rotateY(80);
   model2.draw();
@@ -310,7 +310,7 @@ void piirretaanLahja(int j, int k) {
 
 void piirretaanTalo() {
   pushMatrix();
-  translate(800, 50, 100);
+  translate(800, 0, 100);
   scale(50);
   model4.draw();
   popMatrix();
@@ -331,6 +331,15 @@ void piirraStar(){
     translate(-135, -190, 27);
     scale(30);
     star.draw();
+    popMatrix();
+}
+
+void piirraKirkko(){
+    pushMatrix();
+    translate(-1000, 0, 500);
+    rotateY(40);
+    scale(40);
+    kirkko.draw();
     popMatrix();
 }
 
