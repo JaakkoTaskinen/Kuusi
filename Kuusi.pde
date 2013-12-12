@@ -18,7 +18,7 @@ OBJModel model;
 OBJModel model2;
 OBJModel model3;
 OBJModel model4;
-OBJModel numero;
+OBJModel luukku;
 
 //lumiparametreja
 int           depth = 14; 
@@ -38,21 +38,23 @@ AudioPlayer player; //soitin
 Minim minim;
 int paiva = 0;
 Kappale kappale;
+Numero numero;
 
 
 void setup() {
 
   size(640, 660, P3D);
   kappale = new Kappale();
+  numero = new Numero();
   model = new OBJModel(this, "possu.obj", "relative", TRIANGLES);
   model2 = new OBJModel(this, "lumiukko.obj", "relative", TRIANGLES);
   model3 = new OBJModel(this, "lahja2.obj", "relative", TRIANGLES);
   model4 = new OBJModel(this, "talo_punainen.obj", "relative", TRIANGLES);
-  numero = new OBJModel(this, "numb1.obj", "relative", TRIANGLES); 
+  luukku = new OBJModel(this, "numb1.obj", "relative", TRIANGLES); 
   img = loadImage("lumi.jpg");
   neulat = loadImage("neula.jpg");
   minion = loadImage("tausta.jpg");
-  taustakuva = loadImage("taustakuva2.jpg");
+  taustakuva = loadImage("tausta.jpg");
   fontti = loadFont("BookAntiqua-Bold-48.vlw");
   
   for( int i = 0; i< 60; i++)      // now add some elements for initial seeding 
@@ -135,8 +137,16 @@ void draw() {
     kappale.piirraKappale1(20, 15, 20, new Point3d(0, -30, 0), new Point3d(0, 0, 0), minion);
     popMatrix();
   
-    piirraMaa();
-    
+    piirraMaa(); 
+    String luukunnumero = numero.tarkistaPaiva(paiva);
+    luukku = new OBJModel(this, luukunnumero, "relative", TRIANGLES);
+    pushMatrix();
+    luukku.enableTexture();
+    translate(-100, -200, 140);
+    scale(500);
+    luukku.draw();
+    popMatrix();
+
     //piirretaan lunta:
     if (paiva > 1) {
        piirretaanLunta();
@@ -260,39 +270,6 @@ void piirraMaa() {
   endShape();
 }
 
-public void tarkistaPaiva() {
-  switch(paiva) {
-  case 1: 
-  numero = new OBJModel(this, "numb1.obj", "relative", TRIANGLES); 
-  break; 
-  case 2: 
-  numero = new OBJModel(this, "numb2.obj", "relative", TRIANGLES);
-  break; 
-  case 3: 
-  numero = new OBJModel(this, "numb3.obj", "relative", TRIANGLES);
-  break; 
-  case 4: 
-  numero = new OBJModel(this, "numb4.obj", "relative", TRIANGLES);
-  break; 
-  case 5: 
- // numero = new OBJModel(this, "numb5.obj", "relative", TRIANGLES);
-  break; 
-  case 6: 
-  numero = new OBJModel(this, "numb6.obj", "relative", TRIANGLES);
-  break; 
-  case 7:  
-  numero = new OBJModel(this, "numb7.obj", "relative", TRIANGLES);
-  break; 
-  }
-  pushMatrix();
-  numero.enableTexture();
-  translate(-100, -200, 140);
-  scale(500);
-  numero.draw();
-  popMatrix();
-  
-}
-
 void piirretaanLunta() {
       if (rotationMode==1) {
         angle += delta;
@@ -379,7 +356,6 @@ void keyPressed() {
     }
     if (aloitettu && paiva < 25) {
       paiva ++;
-      tarkistaPaiva();
       println("space bar pressed " + paiva);
     }
   }
