@@ -129,10 +129,10 @@ void draw() {
     piirraKuusi(0, 0, 0, -250);
     piirraKuusi(-100, 0, 0, -230);
       
-    piirraMetsa(-2800, -2800);
-    piirraMetsa(-2800, 2800);
-    piirraMetsa2(-2800, -2800);
-    piirraMetsa2(2800, -2800);
+  //  piirraMetsa(-2800, -2800);
+  //  piirraMetsa(-2800, 2800);
+  //  piirraMetsa2(-2800, -2800);
+  //  piirraMetsa2(2800, -2800);
     
     String luukunnumero = numero.tarkistaPaiva(paiva);
     luukku = new OBJModel(this, luukunnumero, "relative", TRIANGLES);
@@ -142,6 +142,8 @@ void draw() {
     scale(500);
     luukku.draw();
     popMatrix();
+    
+    piirraMaa();
     
     //piirretaan lunta:
     if (paiva > 1) {
