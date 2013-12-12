@@ -137,7 +137,6 @@ void draw() {
     String luukunnumero = numero.tarkistaPaiva(paiva);
     luukku = new OBJModel(this, luukunnumero, "relative", TRIANGLES);
     pushMatrix();
-    luukku.enableTexture();
     translate(-100, -200, 140);
     scale(500);
     luukku.draw();
@@ -159,17 +158,17 @@ void draw() {
     //piirretään possu
     if (paiva > 3) {
       piirretaanLumiukko();
-      piirretaanLahja2();
+      piirretaanLahja(-60, 50);
     }
     if (paiva > 4) {  
       piirretaanPossu(900, 600, 0);
     }
     if (paiva > 5) {
-      piirretaanLahja();
+      piirretaanLahja(50, 55);
     }
     if (paiva >6) {
       piirretaanPossu(800, 700, 0);
-      piirretaanLahja3();
+      piirretaanLahja(70, 120);
     }
     if (paiva >7) {
       piirretaanPossu(900, 700, 20);
@@ -289,25 +288,9 @@ void piirretaanLumiukko() {
   model2.draw();
   popMatrix();
 }
-void piirretaanLahja() {
+void piirretaanLahja(int j, int k) {
   pushMatrix();
-  translate(55, 0, 50);
-  scale(30);
-  model3.draw();
-  popMatrix();
-}
-
-void piirretaanLahja2() {
-  pushMatrix();
-  translate(70, 0, 85);
-  scale(30);
-  model3.draw();
-  popMatrix();
-}
-
-void piirretaanLahja3() {
-  pushMatrix();
-  translate(-60, 0, 50);
+  translate(j, 0, k);
   scale(30);
   model3.draw();
   popMatrix();
