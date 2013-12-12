@@ -3,21 +3,21 @@ public class Numero{
 public String tarkistaPaiva(int paiva) {
   switch(paiva) {
   case 1: 
-  return "numb1.obj";
+  return "numero1.obj";
   case 2: 
-  return "numb2.obj";
+  return "numero2.obj";
   case 3: 
-  return "numb3.obj";
+  return "numero3.obj";
   case 4: 
-  return "numb4.obj";
+  return "numero4.obj";
   case 5: 
-  return "numb5.obj";
+  return "numero5.obj";
   case 6: 
-  return "numb6.obj";
+  return "numero6.obj";
   case 7:  
-  return "numb7.obj";
+  return "numero7.obj";
   default: 
-  return "numb1.obj";
+  return "numero1.obj";
   }
   
 } 
