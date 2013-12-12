@@ -9,9 +9,16 @@ PImage taustakuva;
 PImage kaarna;
 PFont fontti;
 PImage tausta;
+<<<<<<< HEAD
 boolean kappaleAloitettu = false;
 ArrayList tippuvaLumi = new ArrayList(); //Aloitussivun lunta varten
 boolean aloitettu = false; //onko kalenteri aloitettu
+=======
+
+ArrayList fallingChars = new ArrayList();  // Create an empty ArrayList;
+
+boolean aloitettu = false;
+>>>>>>> puut
 
 import saito.objloader.*;
 
@@ -22,6 +29,7 @@ OBJModel model4;
 OBJModel luukku;
 OBJModel star;
 OBJModel kirkko;
+OBJModel kuusi;
 
 
 OBJModel pallo1;
@@ -63,12 +71,17 @@ void setup() {
   model4 = new OBJModel(this, "talo_punainen.obj", "relative", TRIANGLES);
   luukku = new OBJModel(this, "numb1.obj", "relative", TRIANGLES);
   star = new OBJModel(this, "star.obj", "relative", TRIANGLES); 
+<<<<<<< HEAD
   kirkko = new OBJModel(this, "kirkko.obj", "relative", TRIANGLES); 
   pallo1 = new OBJModel(this, "pallo1.obj", "relative", TRIANGLES);
   pallo2 = new OBJModel(this, "pallo2.obj", "relative", TRIANGLES);
   pallo3 = new OBJModel(this, "pallo3.obj", "relative", TRIANGLES);
   pallo4 = new OBJModel(this, "pallo4.obj", "relative", TRIANGLES);
   pallo5 = new OBJModel(this, "pallo5.obj", "relative", TRIANGLES);
+=======
+  kirkko = new OBJModel(this, "kirkko.obj", "relative", TRIANGLES);
+  kuusi = new OBJModel(this, "kuusi.obj", "relative", TRIANGLES); 
+>>>>>>> puut
   img = loadImage("snow.jpg");
   neulaset = loadImage("neulaset.jpg");
   minion = loadImage("tausta.jpg");
@@ -89,8 +102,8 @@ void setup() {
     random(-depth*255), random(1, lumiNopeus));
   }
   minim = new Minim(this); //soitin
-  player = minim.loadFile("Joulumaa.mp3", 2048); //joulukappale
-  
+  player = minim.loadFile("joululaulu.wav", 2048); //joulukappale
+  player.play(); //aloittaa soittamisen
 }
 
 void draw() {
@@ -125,9 +138,7 @@ void draw() {
     }
   }
   else {
-    if (!kappaleAloitettu) {
-       aloitaKappale(); 
-    }
+
     model.disableTexture();
     background(tausta);
     lights();
@@ -151,6 +162,7 @@ void draw() {
     
     //piirraKuusi(-100, 0, 0, -230);
       
+<<<<<<< HEAD
   //  piirraMetsa(-2800, -2800);
   //  piirraMetsa(-2800, 2800);
   //  piirraMetsa2(-2800, -2800);
@@ -160,6 +172,21 @@ void draw() {
 
      piirraNumero();
      
+=======
+   //piirraMetsa(-2800, -2800);
+   //piirraMetsa(-2800, 2800);
+   //piirraMetsa2(-2800, -2800);
+   //piirraMetsa2(2800, -2800);
+    
+    String luukunnumero = numero.tarkistaPaiva(paiva);
+    luukku = new OBJModel(this, luukunnumero, "relative", TRIANGLES);
+    pushMatrix();
+    translate(-100, -200, 140);
+    scale(500);
+    luukku.draw();
+    popMatrix();
+    
+>>>>>>> puut
     piirraMaa();
 
     
@@ -226,25 +253,28 @@ void draw() {
 
 
 void piirraMetsa(int x, int z){
-  
   int j = 0;
-  
-  for (int i = 0; i < 20; i++){
-    
-    piirraKuusi(x + j, 0, z, -250);
+  for (int i = 0; i < 5; i++){
+    piirraPuu(x + j, 0, z);
     j = j + 280;
-  
   }
 }
-void piirraMetsa2(int x, int z){
-  
+
+void piirraPuu(int x, int y, int z) {
+  pushMatrix();
+  translate(x, y, z);
+  scale(200);
+  //rotateY(n);
+  kuusi.draw();
+  popMatrix();
+}
+
+
+void piirraMetsa2(int x, int z){  
   int k = 0;
-  
   for (int i = 0; i < 20; i++){
-    
     piirraKuusi(x , 0, z + k, -250);
     k = k + 280;
-  
   }
 }
 
@@ -328,6 +358,7 @@ void piirretaanPossu(int k, int j, int n) {
   model.draw();
   popMatrix();
 }
+
 
 void piirretaanLumiukko() {
   pushMatrix();
@@ -425,10 +456,6 @@ void piirraPallo5(int x, int y, int z) {
  popMatrix();
 }
 
-void aloitaKappale() {
-  kappaleAloitettu = true; 
-  player.play(); //aloittaa soittamisen 
-}
 
 void stop() {
   player.close();
