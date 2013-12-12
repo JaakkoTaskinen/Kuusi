@@ -1,5 +1,5 @@
 //Luokka lumisateelle
-class Lumisade {
+public class Lumisade {
   float x, y, z;
   float dY;
 
