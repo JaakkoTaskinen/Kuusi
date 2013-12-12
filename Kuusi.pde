@@ -1,4 +1,4 @@
-
+    
 boolean himmenee = true;
 boolean kirkastuu = false;
 float vari = 255;
@@ -21,6 +21,12 @@ OBJModel model2;
 OBJModel model3;
 OBJModel model4;
 OBJModel luukku;
+OBJModel star;
+OBJModel kirkko;
+OBJModel pallo1;
+OBJModel pallo2;
+OBJModel pallo3;
+OBJModel pallo4;
 
 //lumiparametreja
 int           depth = 14; 
@@ -52,7 +58,9 @@ void setup() {
   model2 = new OBJModel(this, "lumiukko.obj", "relative", TRIANGLES);
   model3 = new OBJModel(this, "lahja2.obj", "relative", TRIANGLES);
   model4 = new OBJModel(this, "talo_punainen.obj", "relative", TRIANGLES);
-  luukku = new OBJModel(this, "numb1.obj", "relative", TRIANGLES); 
+  luukku = new OBJModel(this, "numb1.obj", "relative", TRIANGLES);
+  star = new OBJModel(this, "star.obj", "relative", TRIANGLES); 
+  kirkko = new OBJModel(this, "kirkko.obj", "relative", TRIANGLES); 
   img = loadImage("snow.jpg");
   neulaset = loadImage("neulaset.jpg");
   minion = loadImage("tausta.jpg");
@@ -127,7 +135,7 @@ void draw() {
     rotateY( mouseX / 100.0 );
    
     piirraKuusi(0, 0, 0, -250);
-    piirraKuusi(-100, 0, 0, -230);
+    //piirraKuusi(-100, 0, 0, -230);
       
   //  piirraMetsa(-2800, -2800);
   //  piirraMetsa(-2800, 2800);
@@ -172,6 +180,10 @@ void draw() {
     }
     if (paiva >7) {
       piirretaanPossu(900, 700, 20);
+    }
+    
+    if (paiva >8) {
+      piirraStar();
     }
   }
 }
@@ -308,11 +320,20 @@ void piirraNumero(){
     String luukunnumero = numero.tarkistaPaiva(paiva);
     luukku = new OBJModel(this, luukunnumero, "relative", TRIANGLES);
     pushMatrix();
-    translate(-60, -300, -20);
+    translate(-60, 100, -20);
     scale(500);
     luukku.draw();
     popMatrix();
 }
+
+void piirraStar(){
+    pushMatrix();
+    translate(-135, -190, 27);
+    scale(30);
+    star.draw();
+    popMatrix();
+}
+
 
 
 void stop() {
