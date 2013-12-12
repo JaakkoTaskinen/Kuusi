@@ -332,9 +332,11 @@ void keyPressed() {
     if (!aloitettu) {
       aloitettu = true;
     }
-    if (aloitettu && paiva < 25) {
+    if (aloitettu && paiva < 24) {
       paiva ++;
-      println("space bar pressed " + paiva);
+    }
+    else{
+    exit();
     }
   }
 }
