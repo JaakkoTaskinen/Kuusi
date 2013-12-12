@@ -57,10 +57,9 @@ void setup() {
   neulat = loadImage("neula.jpg");
   minion = loadImage("tausta.jpg");
   taustakuva = loadImage("tausta.jpg");
-<<<<<<< HEAD
+
   kaarna = loadImage("kaarna.jpg");
-=======
->>>>>>> df14380267f2075367a1b4a7a4d477b4df9f1362
+
   fontti = loadFont("BookAntiqua-Bold-48.vlw");
   
   for( int i = 0; i< 60; i++)      // now add some elements for initial seeding 
