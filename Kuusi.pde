@@ -6,7 +6,9 @@ PImage img;
 PImage minion;
 PImage neulat;
 PImage taustakuva;
+PImage kaarna;
 PFont fontti;
+
 
 ArrayList fallingChars = new ArrayList();  // Create an empty ArrayList;
 
@@ -52,7 +54,8 @@ void setup() {
   img = loadImage("lumi.jpg");
   neulat = loadImage("neula.jpg");
   minion = loadImage("tausta.jpg");
-  taustakuva = loadImage("taustakuva2.jpg");
+  taustakuva = loadImage("tausta.jpg");
+  kaarna = loadImage("kaarna.jpg");
   fontti = loadFont("BookAntiqua-Bold-48.vlw");
   
   for( int i = 0; i< 60; i++)      // now add some elements for initial seeding 
@@ -119,21 +122,8 @@ void draw() {
     0, 0, 200, // centerX, centerY, centerZ
     0.0, 0.0, 10.0); // upX, upY, upZ
     rotateY( mouseX / 100.0 );
-    
-     //piirretään kuusi
-    pushMatrix();
-    translate(0, 0, 0);
-    kappale.piirraKappale1(60, 1, 20, new Point3d(0, -250, 0), new Point3d(0, -150, 0), neulat); 
-    kappale.piirraKappale1(65, 1, 20, new Point3d(0, -250, 0), new Point3d(0, -90, 0), neulat); 
-    kappale.piirraKappale1(70, 1, 20, new Point3d(0, -250, 0), new Point3d(0, -20, 0), neulat); 
-    popMatrix();
-  
-    //piirretään kuusen runko
-    pushMatrix();
-    translate(0, 0, 0);
-  //  fill(139, 69, 19);
-    kappale.piirraKappale1(20, 15, 20, new Point3d(0, -30, 0), new Point3d(0, 0, 0), minion);
-    popMatrix();
+   
+    piirraKuusi();
   
     piirraMaa();
     
@@ -163,89 +153,21 @@ void draw() {
   }
 }
 
-/*void piirraKappale1(float alaSade, float ylaSade, int sivumaara, Point3d ylaKeskipiste, Point3d alaKeskipiste, PImage tekstuuri) {
-  float kulma1 = 0; 
-  float kulma2 = 0; 
-
-  int ylaPiste1x = 0;
-  int ylaPiste1z = 0;
-  int ylaPiste2x = 0;
-  int ylaPiste2z = 0;
-  int alaPiste1x = 0;
-  int alaPiste1z = 0;
-  int alaPiste2x = 0;
-  int alaPiste2z = 0;
-
-  textureMode(NORMAL);
-
-  for (int sivunumero = 0; sivunumero < sivumaara; ++sivunumero) {
-    kulma1 = sivunumero * 2.0 * PI / sivumaara;
-    kulma2 = (sivunumero + 1) * 2.0 * PI / sivumaara;
-
-    ylaPiste1x = ylaKeskipiste.x + (int)(sin(kulma1) * ylaSade);
-    ylaPiste1z = ylaKeskipiste.z + (int)(cos(kulma1) * ylaSade);
-    ylaPiste2x = ylaKeskipiste.x + (int)(sin(kulma2) * ylaSade); 
-    ylaPiste2z = ylaKeskipiste.z + (int)(cos(kulma2) * ylaSade); 
-    alaPiste1x = ylaKeskipiste.x + (int)(sin(kulma1) * alaSade);
-    alaPiste1z = ylaKeskipiste.z + (int)(cos(kulma1) * alaSade); 
-    alaPiste2x = ylaKeskipiste.x + (int)(sin(kulma2) * alaSade);
-    alaPiste2z = ylaKeskipiste.z + (int)(cos(kulma2) * alaSade);
-
-    beginShape();
-    texture(tekstuuri);
-
-    vertex(ylaPiste2x, ylaKeskipiste.y, ylaPiste2z, 1, 0);
-    vertex(ylaPiste1x, ylaKeskipiste.y, ylaPiste1z, 0, 0);
-    vertex(alaPiste1x, alaKeskipiste.y, alaPiste1z, 0, 1);
-    vertex(alaPiste2x, alaKeskipiste.y, alaPiste2z, 1, 1);
-
-    endShape();
-  }
-} */
-
-/*void piirraKappale(float ylaSade, float alaSade, float korkeus, int sivut, PImage tekstuuri) {
- float kulma = 0;
- float kulmanKasvu = TWO_PI / sivut;
- beginShape(QUAD_STRIP);
- for (int i = 0; i < sivut + 1; ++i) {
- texture(tekstuuri);
- vertex(ylaSade*cos(kulma), 0, ylaSade*sin(kulma));
- vertex(alaSade*cos(kulma), korkeus, alaSade*sin(kulma));
- kulma += kulmanKasvu;
- }
- endShape();
- 
- // If it is not a cone, draw the circular top cap
- if (ylaSade != 0) {
- kulma = 0;
- beginShape(TRIANGLE_FAN);
- texture(tekstuuri);
- 
- // Center point
- vertex(0, 0, 0);
- for (int i = 0; i < sivut + 1; i++) {
- vertex(ylaSade * cos(kulma), 0, ylaSade * sin(kulma));
- kulma += kulmanKasvu;
- }
- endShape();
- }
- 
- // If it is not a cone, draw the circular bottom cap
- if (alaSade != 0) {
- kulma = 0;
- beginShape(TRIANGLE_FAN);
- texture(tekstuuri);
- 
- // Center point
- vertex(0, korkeus, 0);
- for (int i = 0; i < sivut + 1; i++) {
- vertex(alaSade * cos(kulma), korkeus, alaSade * sin(kulma));
- kulma += kulmanKasvu;
- }
- endShape();
- }
- }*/
-
+void piirraKuusi(){
+    //piirretään kuusi
+    pushMatrix();
+    translate(0, 0, 0);
+    kappale.piirraKappale1(60, 1, 20, new Point3d(0, -250, 0), new Point3d(0, -150, 0), neulat); 
+    kappale.piirraKappale1(65, 1, 20, new Point3d(0, -250, 0), new Point3d(0, -90, 0), neulat); 
+    kappale.piirraKappale1(70, 1, 20, new Point3d(0, -250, 0), new Point3d(0, -20, 0), neulat); 
+    popMatrix();
+  
+    //piirretään kuusen runko
+    pushMatrix();
+    translate(0, 0, 0);
+    kappale.piirraKappale1(20, 15, 20, new Point3d(0, -30, 0), new Point3d(0, 0, 0), kaarna);
+    popMatrix();
+}
 void piirraMaa() {
   //fill(200);
   noFill();
