@@ -4,7 +4,7 @@ boolean kirkastuu = false;
 float vari = 255;
 PImage img;
 PImage minion;
-PImage neulat;
+PImage neulaset;
 PImage taustakuva;
 PImage kaarna;
 PFont fontti;
@@ -27,7 +27,7 @@ int           depth = 14;
 int           lumipallojenLkm = 1500; 
 Lumisade[]    tabLumisade = new Lumisade[lumipallojenLkm];
 Lumisade[]    tabLumisade1 = new Lumisade[lumipallojenLkm];
-int           lumiNopeus = 7;
+int           lumiNopeus = 4;
 boolean       clearScreen = true;
 int           taille = 1;
 int           transparency = 255;
@@ -53,11 +53,10 @@ void setup() {
   model3 = new OBJModel(this, "lahja2.obj", "relative", TRIANGLES);
   model4 = new OBJModel(this, "talo_punainen.obj", "relative", TRIANGLES);
   luukku = new OBJModel(this, "numb1.obj", "relative", TRIANGLES); 
-  img = loadImage("lumi.jpg");
-  neulat = loadImage("neula.jpg");
+  img = loadImage("snow.jpg");
+  neulaset = loadImage("neulaset.jpg");
   minion = loadImage("tausta.jpg");
   taustakuva = loadImage("tausta.jpg");
-
   kaarna = loadImage("kaarna.jpg");
 
   fontti = loadFont("BookAntiqua-Bold-48.vlw");
@@ -122,14 +121,21 @@ void draw() {
     noStroke();
   
     perspective(PI/3.0, float(width)/float(height), 1, 10000);
-    camera( 0, -mouseY - 100, mouseY+600, // eyeX, eyeY, eyeZ
+    camera( 0, -mouseY-50, mouseY+600, // eyeX, eyeY, eyeZ
     0, 0, 200, // centerX, centerY, centerZ
     0.0, 0.0, 10.0); // upX, upY, upZ
     rotateY( mouseX / 100.0 );
    
-    piirraKuusi();
+    piirraKuusi(0, 0, 0, -250);
+    piirraKuusi(-100, 0, 0, -230);
   
     piirraMaa(); 
+    
+    piirraMetsa(-2800, -2800);
+    piirraMetsa(-2800, 2800);
+    piirraMetsa2(-2800, -2800);
+    piirraMetsa2(2800, -2800);
+    
     String luukunnumero = numero.tarkistaPaiva(paiva);
     luukku = new OBJModel(this, luukunnumero, "relative", TRIANGLES);
     pushMatrix();
@@ -165,18 +171,41 @@ void draw() {
   }
 }
 
-void piirraKuusi(){
+void piirraMetsa(int x, int z){
+  
+  int j = 0;
+  
+  for (int i = 0; i < 20; i++){
+    
+    piirraKuusi(x + j, 0, z, -250);
+    j = j + 280;
+  
+  }
+}
+void piirraMetsa2(int x, int z){
+  
+  int k = 0;
+  
+  for (int i = 0; i < 20; i++){
+    
+    piirraKuusi(x , 0, z + k, -250);
+    k = k + 280;
+  
+  }
+}
+
+void piirraKuusi(int x, int y, int z, int korkeus1){
     //piirretään kuusi
     pushMatrix();
-    translate(0, 0, 0);
-    kappale.piirraKappale1(60, 1, 20, new Point3d(0, -250, 0), new Point3d(0, -150, 0), neulat); 
-    kappale.piirraKappale1(65, 1, 20, new Point3d(0, -250, 0), new Point3d(0, -90, 0), neulat); 
-    kappale.piirraKappale1(70, 1, 20, new Point3d(0, -250, 0), new Point3d(0, -20, 0), neulat); 
+    translate(x, y, z);
+    kappale.piirraKappale1(55, 1, 18, new Point3d(0, korkeus1, 0), new Point3d(0, -160, 0), neulaset); 
+    kappale.piirraKappale1(65, 1, 24, new Point3d(0, korkeus1, 0), new Point3d(0, -90, 0), neulaset); 
+    kappale.piirraKappale1(70, 1, 35, new Point3d(0, korkeus1, 0), new Point3d(0, -20, 0), neulaset); 
     popMatrix();
   
     //piirretään kuusen runko
     pushMatrix();
-    translate(0, 0, 0);
+    translate(x, y, z);
     kappale.piirraKappale1(20, 15, 20, new Point3d(0, -30, 0), new Point3d(0, 0, 0), kaarna);
     popMatrix();
 }
@@ -187,10 +216,10 @@ void piirraMaa() {
   textureMode(NORMAL);
   beginShape();
   texture(img);
-  vertex(1800, 0, 1800, 0, 0);
-  vertex(1800, 0, -1800, 0, 1);
-  vertex(-1800, 0, -1800, 1, 1);
-  vertex(-1800, 0, 1800, 1, 0);
+  vertex(2800, 0, 2800, 0, 0);
+  vertex(2800, 0, -2800, 0, 1);
+  vertex(-2800, 0, -2800, 1, 1);
+  vertex(-2800, 0, 2800, 1, 0);
   endShape();
 }
 
