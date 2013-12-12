@@ -23,6 +23,11 @@ OBJModel model4;
 OBJModel luukku;
 OBJModel star;
 OBJModel kirkko;
+OBJModel pallo1;
+OBJModel pallo2;
+OBJModel pallo3;
+OBJModel pallo4;
+OBJModel pallo5;
 
 //lumiparametreja
 int           depth = 14; 
@@ -57,6 +62,11 @@ void setup() {
   luukku = new OBJModel(this, "numb1.obj", "relative", TRIANGLES);
   star = new OBJModel(this, "star.obj", "relative", TRIANGLES); 
   kirkko = new OBJModel(this, "kirkko.obj", "relative", TRIANGLES); 
+  pallo1 = new OBJModel(this, "pallo1.obj", "relative", TRIANGLES);
+  pallo2 = new OBJModel(this, "pallo2.obj", "relative", TRIANGLES);
+  pallo3 = new OBJModel(this, "pallo3.obj", "relative", TRIANGLES);
+  pallo4 = new OBJModel(this, "pallo4.obj", "relative", TRIANGLES);
+  pallo5 = new OBJModel(this, "pallo5.obj", "relative", TRIANGLES);
   img = loadImage("snow.jpg");
   neulaset = loadImage("neulaset.jpg");
   minion = loadImage("tausta.jpg");
@@ -132,6 +142,8 @@ void draw() {
     rotateY( mouseX / 100.0 );
    
     piirraKuusi(0, 0, 0, -250);
+    
+    
     //piirraKuusi(-100, 0, 0, -230);
       
   //  piirraMetsa(-2800, -2800);
@@ -186,6 +198,14 @@ void draw() {
     if (paiva >9) {
       piirraKirkko();
     }
+    if (paiva > 10) {
+      piirraPallo1(-55, -150, 0);
+      piirraPallo2(35, -150, 0);
+      piirraPallo3(0, -150, -40);
+      piirraPallo4(0, -150, 55);
+    }
+   
+    
   }
 }
 
@@ -343,6 +363,46 @@ void piirraKirkko(){
     scale(40);
     kirkko.draw();
     popMatrix();
+}
+
+void piirraPallo1(int x, int y, int z) {
+ pushMatrix();
+ translate(x, y, z);
+ scale(4);
+ pallo1.draw();
+ popMatrix();
+}
+
+void piirraPallo2(int x, int y, int z) {
+ pushMatrix();
+ translate(x, y, z);
+ scale(3);
+ pallo2.draw();
+ popMatrix();
+}
+
+void piirraPallo3(int x, int y, int z) {
+ pushMatrix();
+ translate(x, y, z);
+ scale(4);
+ pallo3.draw();
+ popMatrix();
+}
+
+void piirraPallo4(int x, int y, int z) {
+ pushMatrix();
+ translate(x, y, z);
+ scale(5);
+ pallo4.draw();
+ popMatrix();
+}
+
+void piirraPallo5(int x, int y, int z) {
+ pushMatrix();
+ translate(x, y, z);
+ scale(3);
+ pallo5.draw();
+ popMatrix();
 }
 
 
