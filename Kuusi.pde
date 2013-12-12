@@ -207,6 +207,14 @@ void draw() {
       piirraPallo3(0, -150, -40);
       piirraPallo4(0, -150, 55);
     }
+    if (paiva > 11) {
+      piirraPallo2(-40, -80, -45);
+      piirraPallo3(-55, -80, 0);
+      piirraPallo4(45, -80, 0);
+      piirraPallo5(0, -80, -50);
+      piirraPallo1(0, -80, 55);
+    }
+   
     piirraMaa();
 
 }
