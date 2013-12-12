@@ -8,7 +8,7 @@ PImage neulaset;
 PImage taustakuva;
 PImage kaarna;
 PFont fontti;
-
+PImage tausta;
 
 ArrayList fallingChars = new ArrayList();  // Create an empty ArrayList;
 
@@ -60,8 +60,9 @@ void setup() {
   img = loadImage("snow.jpg");
   neulaset = loadImage("neulaset.jpg");
   minion = loadImage("tausta.jpg");
-  taustakuva = loadImage("tausta.jpg");
+  taustakuva = loadImage("taustakuva2.jpg");
   kaarna = loadImage("kaarna.jpg");
+  tausta = loadImage("taustakuva.jpg");
 
   fontti = loadFont("BookAntiqua-Bold-48.vlw");
 
@@ -113,7 +114,7 @@ void draw() {
   else {
 
     model.disableTexture();
-    background(0);
+    background(tausta);
     lights();
     //ambientLight(155, 155, 155);
     directionalLight(255, 255, 255, 1, 1, 1);
@@ -318,11 +319,12 @@ void piirretaanTalo() {
 
 void piirraNumero(){
     String luukunnumero = numero.tarkistaPaiva(paiva);
-    luukku = new OBJModel(this, luukunnumero, "relative", TRIANGLES);
+    luukku.load(luukunnumero);
     pushMatrix();
     translate(-60, 100, -20);
-    scale(500);
+    scale(700);
     luukku.draw();
+    luukku.reset();
     popMatrix();
 }
 
