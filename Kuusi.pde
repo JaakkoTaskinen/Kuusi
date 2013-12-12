@@ -9,6 +9,7 @@ PImage taustakuva;
 PImage kaarna;
 PFont fontti;
 PImage tausta;
+boolean kappaleAloitettu = false;
 
 ArrayList fallingChars = new ArrayList();  // Create an empty ArrayList;
 
@@ -23,10 +24,6 @@ OBJModel model4;
 OBJModel luukku;
 OBJModel star;
 OBJModel kirkko;
-OBJModel pallo1;
-OBJModel pallo2;
-OBJModel pallo3;
-OBJModel pallo4;
 
 //lumiparametreja
 int           depth = 14; 
@@ -80,8 +77,8 @@ void setup() {
     random(-depth*255), random(1, lumiNopeus));
   }
   minim = new Minim(this); //soitin
-  player = minim.loadFile("joululaulu.wav", 2048); //joulukappale
-  player.play(); //aloittaa soittamisen
+  player = minim.loadFile("Joulumaa.mp3", 2048); //joulukappale
+  
 }
 
 void draw() {
@@ -116,7 +113,9 @@ void draw() {
     }
   }
   else {
-
+    if (!kappaleAloitettu) {
+       aloitaKappale(); 
+    }
     model.disableTexture();
     background(tausta);
     lights();
@@ -142,8 +141,15 @@ void draw() {
   //  piirraMetsa(-2800, 2800);
   //  piirraMetsa2(-2800, -2800);
   //  piirraMetsa2(2800, -2800);
-
-    piirraNumero();
+    
+    String luukunnumero = numero.tarkistaPaiva(paiva);
+    luukku = new OBJModel(this, luukunnumero, "relative", TRIANGLES);
+    pushMatrix();
+    translate(-100, -200, 140);
+    scale(500);
+    luukku.draw();
+    popMatrix();
+    
     piirraMaa();
     
     //piirretaan lunta:
@@ -180,8 +186,8 @@ void draw() {
       piirraStar();
     }
     
-    if(paiva >9){
-       piirraKirkko();
+    if (paiva >9) {
+      piirraKirkko();
     }
   }
 }
@@ -229,7 +235,6 @@ void piirraMaa() {
   noFill();
   noTint();
   textureMode(NORMAL);
-  luukku.disableTexture();
   beginShape();
   texture(img);
   vertex(2800, 0, 2800, 0, 0);
@@ -317,12 +322,12 @@ void piirretaanTalo() {
 
 void piirraNumero(){
     String luukunnumero = numero.tarkistaPaiva(paiva);
-    luukku.reset();
     luukku.load(luukunnumero);
     pushMatrix();
-    translate(-100, -200, 140);
+    translate(-60, 100, -20);
     scale(700);
     luukku.draw();
+    luukku.reset();
     popMatrix();
 }
 
@@ -335,13 +340,19 @@ void piirraStar(){
 }
 
 void piirraKirkko(){
- pushMatrix();
- translate(-1000, 0, 500);
- rotateY(40);
- scale(40);
- kirkko.draw();
- popMatrix();
+    pushMatrix();
+    translate(-1000, 0, 500);
+    rotateY(40);
+    scale(40);
+    kirkko.draw();
+    popMatrix();
 }
+
+void aloitaKappale() {
+  kappaleAloitettu = true; 
+  player.play(); //aloittaa soittamisen 
+}
+
 
 void stop() {
   player.close();
