@@ -169,17 +169,17 @@ void draw() {
       piirretaanLahja2();
     }
     if (paiva > 4) {  
-      piirretaanPossu();
+      piirretaanPossu(900, 600, 0);
     }
     if (paiva > 5) {
       piirretaanLahja();
     }
     if (paiva >6) {
-      piirretaanPossu2();
+      piirretaanPossu(800, 700, 0);
       piirretaanLahja3();
     }
     if (paiva >7) {
-      piirretaanPossu3();
+      piirretaanPossu(900, 700, 20);
     }
   }
 }
@@ -296,38 +296,17 @@ void piirretaanPaketti() {
 }
 */
 
-void piirretaanPossu() {
+void piirretaanPossu(int k, int j, int n) {
   pushMatrix();
-  model.enableTexture();
-  translate(900, 0, 600);
+  translate(k, 0, j);
   scale(80);
-  model.draw();
-  popMatrix();
-}
-
-void piirretaanPossu2() {
-  pushMatrix();
-  model.enableTexture();
-  translate(800, 0, 700);
-  scale(80);
-  rotateY(20);
-  model.draw();
-  popMatrix();
-}
-
-void piirretaanPossu3() {
-  pushMatrix();
-  model.enableTexture();
-  translate(900, 0, 700);
-  scale(80);
-  rotateY(180);
+  rotateY(n);
   model.draw();
   popMatrix();
 }
 
 void piirretaanLumiukko() {
   pushMatrix();
-  model2.enableTexture();
   translate(600, 30, 150);
   scale(20);
   rotateY(80);
@@ -336,7 +315,6 @@ void piirretaanLumiukko() {
 }
 void piirretaanLahja() {
   pushMatrix();
-  model3.enableTexture();
   translate(55, 0, 50);
   scale(30);
   model3.draw();
@@ -345,7 +323,6 @@ void piirretaanLahja() {
 
 void piirretaanLahja2() {
   pushMatrix();
-  model3.enableTexture();
   translate(70, 0, 85);
   scale(30);
   model3.draw();
@@ -354,7 +331,6 @@ void piirretaanLahja2() {
 
 void piirretaanLahja3() {
   pushMatrix();
-  model3.enableTexture();
   translate(-60, 0, 50);
   scale(30);
   model3.draw();
@@ -363,7 +339,6 @@ void piirretaanLahja3() {
 
 void piirretaanTalo() {
   pushMatrix();
-  model4.enableTexture();
   translate(800, 50, 100);
   scale(50);
   model4.draw();
@@ -374,7 +349,6 @@ void piirraNumero(){
     String luukunnumero = numero.tarkistaPaiva(paiva);
     luukku = new OBJModel(this, luukunnumero, "relative", TRIANGLES);
     pushMatrix();
-    luukku.enableTexture();
     translate(-60, -300, -20);
     scale(500);
     luukku.draw();
