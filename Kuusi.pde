@@ -24,14 +24,14 @@ OBJModel model4;
 OBJModel luukku;
 OBJModel star;
 OBJModel kirkko;
-<<<<<<< HEAD
-=======
+
+
 OBJModel pallo1;
 OBJModel pallo2;
 OBJModel pallo3;
 OBJModel pallo4;
 OBJModel pallo5;
->>>>>>> eea80a861b58feed30bf432b603fb77d127c35d8
+
 
 //lumiparametreja
 int           depth = 14; 
@@ -156,24 +156,13 @@ void draw() {
   //  piirraMetsa(-2800, 2800);
   //  piirraMetsa2(-2800, -2800);
   //  piirraMetsa2(2800, -2800);
-<<<<<<< HEAD
-<<<<<<< HEAD
+
+
 
      piirraNumero();
-=======
-=======
->>>>>>> eea80a861b58feed30bf432b603fb77d127c35d8
-    
-    String luukunnumero = numero.tarkistaPaiva(paiva);
-    luukku = new OBJModel(this, luukunnumero, "relative", TRIANGLES);
-    pushMatrix();
-    translate(-100, -200, 140);
-    scale(500);
-    luukku.draw();
-    popMatrix();
-    
+     
     piirraMaa();
->>>>>>> 56fca2d686a8804d4d3bdd4ec7c8d2dd8189631e
+
     
     //piirretaan lunta:
     if (paiva > 1) {
@@ -211,12 +200,7 @@ void draw() {
     
     if (paiva >9) {
       piirraKirkko();
-<<<<<<< HEAD
-    }
-    piirraMaa();
 
-}
-=======
     }
     if (paiva > 10) {
       piirraPallo1(-55, -150, 0);
@@ -224,11 +208,15 @@ void draw() {
       piirraPallo3(0, -150, -40);
       piirraPallo4(0, -150, 55);
     }
+    piirraMaa();
+
+}
+    
    
     
   }
->>>>>>> eea80a861b58feed30bf432b603fb77d127c35d8
-}
+
+
 
 void piirraMetsa(int x, int z){
   
@@ -363,7 +351,7 @@ void piirraNumero(){
     String luukunnumero = numero.tarkistaPaiva(paiva);
     luukku.load(luukunnumero);
     pushMatrix();
-    translate(-60, 100, -20);
+    translate(-100, -200, 140);
     scale(700);
     luukku.draw();
     luukku.reset();
@@ -385,11 +373,10 @@ void piirraKirkko(){
     scale(40);
     kirkko.draw();
     popMatrix();
-<<<<<<< HEAD
+
 }
 
-=======
-}
+
 
 void piirraPallo1(int x, int y, int z) {
  pushMatrix();
@@ -431,13 +418,10 @@ void piirraPallo5(int x, int y, int z) {
  popMatrix();
 }
 
-
->>>>>>> eea80a861b58feed30bf432b603fb77d127c35d8
 void aloitaKappale() {
   kappaleAloitettu = true; 
   player.play(); //aloittaa soittamisen 
 }
-
 
 void stop() {
   player.close();
