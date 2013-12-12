@@ -143,8 +143,7 @@ void draw() {
   //  piirraMetsa2(-2800, -2800);
   //  piirraMetsa2(2800, -2800);
 
-    piirraNumero();
-    piirraMaa();
+     piirraNumero();
     
     //piirretaan lunta:
     if (paiva > 1) {
@@ -183,7 +182,9 @@ void draw() {
     if(paiva >9){
        piirraKirkko();
     }
-  }
+    piirraMaa();
+
+}
 }
 
 void piirraMetsa(int x, int z){
@@ -225,11 +226,10 @@ void piirraKuusi(int x, int y, int z, int korkeus1){
     popMatrix();
 }
 void piirraMaa() {
-  //fill(200);
+   //fill(200);
   noFill();
   noTint();
   textureMode(NORMAL);
-  luukku.disableTexture();
   beginShape();
   texture(img);
   vertex(2800, 0, 2800, 0, 0);
@@ -316,6 +316,7 @@ void piirretaanTalo() {
 }
 
 void piirraNumero(){
+  
     String luukunnumero = numero.tarkistaPaiva(paiva);
     luukku.reset();
     luukku.load(luukunnumero);
