@@ -1,6 +1,6 @@
 public class Point3d {
-
-  int x, y, z;
+  
+  int x,y,z;
 
   Point3d (int x, int y, int z) {
     this.x = x;
@@ -8,4 +8,3 @@ public class Point3d {
     this.z = z;
   }
 }
-
