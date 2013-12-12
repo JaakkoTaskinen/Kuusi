@@ -77,6 +77,7 @@ void setup() {
 }
 
 void draw() {
+  
   if (!aloitettu) {
     background(255);
     fill(240);
@@ -125,19 +126,7 @@ void draw() {
     camera( 0, -mouseY - 100, mouseY+600, // eyeX, eyeY, eyeZ
     0, 0, 200, // centerX, centerY, centerZ
     0.0, 0.0, 10.0); // upX, upY, upZ
-    rotateY( mouseX / 100.0 );
-   
-    piirraKuusi();
-  
-    piirraMaa(); 
-    String luukunnumero = numero.tarkistaPaiva(paiva);
-    luukku = new OBJModel(this, luukunnumero, "relative", TRIANGLES);
-    pushMatrix();
-    luukku.enableTexture();
-    translate(-100, -200, 140);
-    scale(500);
-    luukku.draw();
-    popMatrix();
+    rotateY( mouseX / 100.0 );  
 
     //piirretaan lunta:
     if (paiva > 1) {
@@ -162,6 +151,11 @@ void draw() {
     if (paiva >6) {
       piirretaanTalo();
     }
+
+    piirraKuusi();
+    piirraMaa(); 
+    piirraNumero();
+
   }
 }
 
@@ -179,6 +173,18 @@ void piirraKuusi(){
     translate(0, 0, 0);
     kappale.piirraKappale1(20, 15, 20, new Point3d(0, -30, 0), new Point3d(0, 0, 0), kaarna);
     popMatrix();
+}
+
+void piirraNumero(){
+   
+    String luukunnumero = numero.tarkistaPaiva(paiva);
+    luukku = new OBJModel(this, luukunnumero, "relative", TRIANGLES);
+    pushMatrix();
+    translate(-100, -200, 140);
+    scale(500);
+    luukku.draw();
+    popMatrix();
+
 }
 void piirraMaa() {
   //fill(200);
@@ -280,7 +286,9 @@ void keyPressed() {
     }
     if (aloitettu && paiva < 25) {
       paiva ++;
-      println("space bar pressed " + paiva);
+    }
+    else{
+      exit();
     }
   }
 }
