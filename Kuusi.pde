@@ -368,7 +368,6 @@ void piirraKirkko(){
     popMatrix();
 }
 
-<<<<<<< HEAD
 void piirraPallo1(int x, int y, int z) {
  pushMatrix();
  translate(x, y, z);
@@ -409,12 +408,11 @@ void piirraPallo5(int x, int y, int z) {
  popMatrix();
 }
 
-=======
+
 void aloitaKappale() {
   kappaleAloitettu = true; 
   player.play(); //aloittaa soittamisen 
 }
->>>>>>> 56fca2d686a8804d4d3bdd4ec7c8d2dd8189631e
 
 
 void stop() {
