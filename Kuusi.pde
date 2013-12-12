@@ -51,7 +51,7 @@ void setup() {
   model = new OBJModel(this, "possu.obj", "relative", TRIANGLES);
   model2 = new OBJModel(this, "lumiukko.obj", "relative", TRIANGLES);
   model3 = new OBJModel(this, "lahja2.obj", "relative", TRIANGLES);
-  model4 = new OBJModel(this, "talo_punainen.obj", "relative", TRIANGLES);
+  model4 = new OBJModel(this, "talo1.obj", "relative", TRIANGLES);
   luukku = new OBJModel(this, "numb1.obj", "relative", TRIANGLES); 
   img = loadImage("lumi.jpg");
   neulat = loadImage("neula.jpg");
