@@ -125,13 +125,10 @@ void draw() {
     0, 0, 200, // centerX, centerY, centerZ
     0.0, 0.0, 10.0); // upX, upY, upZ
     rotateY( mouseX / 100.0 );
-<<<<<<< HEAD
    
     piirraKuusi(0, 0, 0, -250);
     piirraKuusi(-100, 0, 0, -230);
-  
-    piirraMaa(); 
-    
+      
     piirraMetsa(-2800, -2800);
     piirraMetsa(-2800, 2800);
     piirraMetsa2(-2800, -2800);
@@ -145,12 +142,6 @@ void draw() {
     scale(500);
     luukku.draw();
     popMatrix();
-=======
->>>>>>> 7efacc16c656440fba4bde1497a44d13231d5dd6
-
-    piirraKuusi();
-    piirraMaa();
-    piirraNumero(); 
     
     //piirretaan lunta:
     if (paiva > 1) {
@@ -184,7 +175,6 @@ void draw() {
   }
 }
 
-<<<<<<< HEAD
 void piirraMetsa(int x, int z){
   
   int j = 0;
@@ -222,22 +212,6 @@ void piirraKuusi(int x, int y, int z, int korkeus1){
     translate(x, y, z);
     kappale.piirraKappale1(20, 15, 20, new Point3d(0, -30, 0), new Point3d(0, 0, 0), kaarna);
     popMatrix();
-=======
-void piirraKuusi() {
-  //piirretään kuusi
-  pushMatrix();
-  translate(0, 0, 0);
-  kappale.piirraKappale1(60, 1, 20, new Point3d(0, -250, 0), new Point3d(0, -150, 0), neulat); 
-  kappale.piirraKappale1(65, 1, 20, new Point3d(0, -250, 0), new Point3d(0, -90, 0), neulat); 
-  kappale.piirraKappale1(70, 1, 20, new Point3d(0, -250, 0), new Point3d(0, -20, 0), neulat); 
-  popMatrix();
-
-  //piirretään kuusen runko
-  pushMatrix();
-  translate(0, 0, 0);
-  kappale.piirraKappale1(20, 15, 20, new Point3d(0, -30, 0), new Point3d(0, 0, 0), kaarna);
-  popMatrix();
->>>>>>> 7efacc16c656440fba4bde1497a44d13231d5dd6
 }
 void piirraMaa() {
   //fill(200);
