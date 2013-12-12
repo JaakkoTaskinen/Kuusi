@@ -10,10 +10,8 @@ PImage kaarna;
 PFont fontti;
 PImage tausta;
 boolean kappaleAloitettu = false;
-
-ArrayList fallingChars = new ArrayList();  // Create an empty ArrayList;
-
-boolean aloitettu = false;
+ArrayList tippuvaLumi = new ArrayList(); //Aloitussivun lunta varten
+boolean aloitettu = false; //onko kalenteri aloitettu
 
 import saito.objloader.*;
 
@@ -35,10 +33,10 @@ OBJModel pallo5;
 
 //lumiparametreja
 int           depth = 14; 
-int           lumipallojenLkm = 1500; 
+int           lumipallojenLkm = 1500; //joulumaan lumipallot
 Lumisade[]    tabLumisade = new Lumisade[lumipallojenLkm];
 Lumisade[]    tabLumisade1 = new Lumisade[lumipallojenLkm];
-int           lumiNopeus = 4;
+int           lumiNopeus = 4; //lumen putoamisnopeus
 boolean       clearScreen = true;
 int           taille = 1;
 int           transparency = 255;
@@ -83,6 +81,7 @@ void setup() {
   for ( int i = 0; i< 60; i++)      // now add some elements for initial seeding 
     CreateChar(1);
 
+  //luodaan joulumaan lumipallot 
   for (int nb=0; nb<lumipallojenLkm; nb++) {
     tabLumisade[nb] = new Lumisade(random(-2*width, 2*width), random(-2*height, 2*height), 
     random(depth*255), random(1, lumiNopeus));
@@ -109,12 +108,12 @@ void draw() {
     text("Mukavaa Joulun odotusta!", 320, 350);
 
     //  background(0);
-    for (int i = fallingChars.size()-1; i >= 0; i--) {   // An ArrayList doesn't know what it is storing so we have to cast the object coming out
-      fallingStar fc = (fallingStar) fallingChars.get(i);
-      if (fc.notVisible() ) fallingChars.remove(i);
+    for (int i = tippuvaLumi.size()-1; i >= 0; i--) {   // An ArrayList doesn't know what it is storing so we have to cast the object coming out
+      lumiAlussa lumialussa = (lumiAlussa) tippuvaLumi.get(i);
+      if (lumialussa.eiNakyvissa() ) tippuvaLumi.remove(i);
       else {
-        fc.fall();
-        fc.display();
+        lumialussa.sataa();
+        lumialussa.nayta();
       }
     }
     if ((frameCount & 2) > 0 ) {

@@ -1,81 +1,79 @@
-int maxStarSize = 14;
+//luo alussa olevan lumisateen
+
+int maxKoko = 14;
 String graphicsMode =  P2D; 
 
-class fallingStar {
+class lumiAlussa {
   int mx;
   float my;
   int mAlpha;
-  float mSize;
-  float mRotate;
-  int mnPoints;
+  float koko;
+  float kaanna;
+  int lumiPisteet;
   //constructor
-  fallingStar(int x, int y)
-  {
+  lumiAlussa(int x, int y){
     mx = x;
     my = y;
     mAlpha = 255;
-    mSize = random(maxStarSize);
-    mRotate = random(TWO_PI);
-    mnPoints = 5 + (int)random(5);
+    koko = random(maxKoko);
+    kaanna = random(TWO_PI);
+    lumiPisteet = 5 + (int)random(5);
   }
 
-  boolean notVisible() {
+  boolean eiNakyvissa() {
     if (my < 0) {
       return false;
     }
     else
-      return (my > height) || (mAlpha < 0)  || (mSize < 1.5);
+      return (my > height) || (mAlpha < 0)  || (koko < 1.5);
   }
 
-  void display()
-  {
-    if (!notVisible()) {
+  void nayta(){
+    if (!eiNakyvissa()) {
       fill(color(255, 255, 255), mAlpha);
       pushMatrix();
-      translate(mx - mSize /2, my - mSize /2);
-      rotate(mRotate);
-      star(mnPoints, mSize, mSize/4);
+      translate(mx - koko /2, my - koko /2);
+      rotate(kaanna);
+      lumiTahti(lumiPisteet, koko, koko/4);
       popMatrix();
     }
   }
 
-  void fall()
-  {
+  void sataa(){
     mAlpha = mAlpha - 1;
-    my = my + 1 + mSize / 5;
-    mSize = mSize * 0.99;
+    my = my + 1 + koko / 5;
+    koko = koko * 0.99;
   }
 }
 
-void CreateChar(int n)
-{
+void CreateChar(int n){
   int x = (int)random(width);
   int y = (int)random(height/ n);
-  if (n == 1) // Start by adding some elements to whole screen
-    fallingChars.add(new fallingStar(x, y)); 
-  else // top-up
-  fallingChars.add(new fallingStar(x, -y));  // Start by adding some elements
+  if (n == 1) { 
+    tippuvaLumi.add(new lumiAlussa(x, y)); 
+  }
+  else { 
+  tippuvaLumi.add(new lumiAlussa(x, -y));
+  }  
 }
 
 
-void star(int nPoints, float rad1, float rad2)
-{
-  float angle = TWO_PI / nPoints;
-  float angle2 = angle / 2;
-  float origAngle = 0.0;
+void lumiTahti(int pisteet, float rad1, float rad2){
+  float kulma1 = TWO_PI / pisteet;
+  float kulma2 = kulma1 / 2;
+  float alkupKulma = 0.0;
   beginShape();
   fill(255, 255, 255);
   stroke(255, 255, 255);
   strokeWeight(1);
-  for (int i = 0; i < nPoints; i++)
-  {
-    float y1 = rad1 * sin(origAngle);
-    float x1 = rad1 * cos(origAngle);
-    float y2 = rad2 * sin(origAngle + angle2);
-    float x2 = rad2 * cos(origAngle + angle2);
+  for (int i = 0; i < pisteet; i++) {
+    float y1 = rad1 * sin(alkupKulma);
+    float x1 = rad1 * cos(alkupKulma);
+    float y2 = rad2 * sin(alkupKulma + kulma2);
+    float x2 = rad2 * cos(alkupKulma + kulma2);
     vertex(x1, y1);
     vertex(x2, y2);
-    origAngle += angle;
+    alkupKulma += kulma1;
   }
   endShape(CLOSE);
 }
