@@ -22,6 +22,7 @@ OBJModel model4;
 OBJModel luukku;
 OBJModel star;
 OBJModel kirkko;
+OBJModel laatikko;
 
 
 OBJModel pallo1;
@@ -63,6 +64,7 @@ void setup() {
   model4 = new OBJModel(this, "talo_punainen.obj", "relative", TRIANGLES);
   luukku = new OBJModel(this, "numb1.obj", "relative", TRIANGLES);
   star = new OBJModel(this, "star.obj", "relative", TRIANGLES); 
+  laatikko = new OBJModel(this, "boxi.obj", "relative", TRIANGLES);
   kirkko = new OBJModel(this, "kirkko.obj", "relative", TRIANGLES); 
   pallo1 = new OBJModel(this, "pallo1.obj", "relative", TRIANGLES);
   pallo2 = new OBJModel(this, "pallo2.obj", "relative", TRIANGLES);
@@ -158,7 +160,7 @@ void draw() {
 
 
 
-     piirraNumero();
+    piirraNumero();
      
     piirraMaa();
 
@@ -214,7 +216,8 @@ void draw() {
       piirraPallo5(0, -80, -50);
       piirraPallo1(0, -80, 55);
     }
-   
+    
+    piirraPaketti();
     piirraMaa();
 
 }
@@ -293,6 +296,13 @@ void piirretaanLunta() {
     tabLumisade1[nb].aff();
     tabLumisade1[nb].lumiAnimaatio();
   }
+}
+
+void piirraPaketti(){
+  pushMatrix();
+  translate(-300, -200, -200);
+  laatikko.draw();
+  popMatrix();
 }
 
 /*
