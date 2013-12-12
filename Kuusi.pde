@@ -23,6 +23,10 @@ OBJModel model4;
 OBJModel luukku;
 OBJModel star;
 OBJModel kirkko;
+OBJModel pallo1;
+OBJModel pallo2;
+OBJModel pallo3;
+OBJModel pallo4;
 
 //lumiparametreja
 int           depth = 14; 
@@ -138,15 +142,8 @@ void draw() {
   //  piirraMetsa(-2800, 2800);
   //  piirraMetsa2(-2800, -2800);
   //  piirraMetsa2(2800, -2800);
-    
-    String luukunnumero = numero.tarkistaPaiva(paiva);
-    luukku = new OBJModel(this, luukunnumero, "relative", TRIANGLES);
-    pushMatrix();
-    translate(-100, -200, 140);
-    scale(500);
-    luukku.draw();
-    popMatrix();
-    
+
+    piirraNumero();
     piirraMaa();
     
     //piirretaan lunta:
@@ -183,8 +180,8 @@ void draw() {
       piirraStar();
     }
     
-    if (paiva >9) {
-      piirraKirkko();
+    if(paiva >9){
+       piirraKirkko();
     }
   }
 }
@@ -232,6 +229,7 @@ void piirraMaa() {
   noFill();
   noTint();
   textureMode(NORMAL);
+  luukku.disableTexture();
   beginShape();
   texture(img);
   vertex(2800, 0, 2800, 0, 0);
@@ -319,12 +317,12 @@ void piirretaanTalo() {
 
 void piirraNumero(){
     String luukunnumero = numero.tarkistaPaiva(paiva);
+    luukku.reset();
     luukku.load(luukunnumero);
     pushMatrix();
-    translate(-60, 100, -20);
+    translate(-100, -200, 140);
     scale(700);
     luukku.draw();
-    luukku.reset();
     popMatrix();
 }
 
@@ -337,15 +335,13 @@ void piirraStar(){
 }
 
 void piirraKirkko(){
-    pushMatrix();
-    translate(-1000, 0, 500);
-    rotateY(40);
-    scale(40);
-    kirkko.draw();
-    popMatrix();
+ pushMatrix();
+ translate(-1000, 0, 500);
+ rotateY(40);
+ scale(40);
+ kirkko.draw();
+ popMatrix();
 }
-
-
 
 void stop() {
   player.close();
