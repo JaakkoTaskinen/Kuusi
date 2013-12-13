@@ -155,8 +155,8 @@ void draw() {
    
     piirraKuusi(0, 0, 0, -250);
    
-    piirraMalli(20,0, 40, lahja3, 50);
-    piirraMalli(20, 0, -20, lahja4, 30);
+    piirraMalli(20,0, 40, lahja3, 50, 0);
+    piirraMalli(20, 0, -20, lahja4, 30, 0);
     
     //piirraKuusi(-100, 0, 0, -230);
       
@@ -180,33 +180,39 @@ void draw() {
     //piiretaan talo
     if (paiva > 2) {
         //piirretaanTalo();
-        piirraMalli(800, 0, 100, model4, 50);
+        piirraMalli(800, 0, 100, model4, 50, 0);
     }
     
     //tarkistaPaiva();
 
     //piirretään possu
     if (paiva > 3) {
-      piirretaanLumiukko();
-      piirretaanLahja(-60, 50);
+      piirraMalli(600, 0, 150, model2, 20, 80); // lumiukko
+      piirraMalli(-60, 0, 50, model3, 30, 0); //lahja
+     // piirretaanLumiukko();
+     // piirretaanLahja(-60, 50);
     }
     if (paiva > 4) {  
-      piirretaanPossu(900, 600, 0);
+      piirraMalli(900, 0, 600, model, 80, 0); //possu
+//piirraMalli(600, 0, 150, model2, 20, 80); // lumiukko
+//piirraMalli(j, 0, k, model3, 30, 0); //lahja
+    //  piirretaanPossu(900, 600, 0);
     }
     if (paiva > 5) {
      // piirraLippu();
-     piirraMalli(600, 0, -300, lippu, 35);
+     piirraMalli(600, 0, -300, lippu, 35, 0);
     }
     if (paiva >6) {
-      piirretaanLahja(50, 55);
+    //  piirretaanLahja(50, 55);
+      piirraMalli(50, 0, 55, model3, 30, 0); //lahja
     }
     if (paiva >7) {
-      piirretaanPossu(900, 700, 20);
+     // piirretaanPossu(900, 700, 20);
+     piirraMalli(900, 0, 700, model, 80, 200); //possu
     }
     
     if (paiva >8) {
-      //piirraStar();
-      piirraMalli(-135, -190, 27, star, 30);
+      piirraMalli(-135, -190, 27, star, 30, 0); //piirtaa tahden
     }
     
     if (paiva >9) {
@@ -214,10 +220,10 @@ void draw() {
 
     }
     if (paiva > 10) {
-      piirraMalli(-55, -150, 0, pallo1, 3);
-      piirraMalli(35, -150, 0, pallo2, 3);
-      piirraMalli(0, -150, -40, pallo3, 4);
-      piirraMalli(0, -150, 55, pallo4, 5);
+      piirraMalli(-55, -150, 0, pallo1, 3, 0);
+      piirraMalli(35, -150, 0, pallo2, 3, 0);
+      piirraMalli(0, -150, -40, pallo3, 4, 0);
+      piirraMalli(0, -150, 55, pallo4, 5, 0);
      /* piirraMalli(x, y, z, pallo5, 3);
       piirraPallo1(-55, -150, 0);
       piirraPallo2(35, -150, 0);
@@ -225,11 +231,11 @@ void draw() {
       piirraPallo4(0, -150, 55);*/
     }
     if (paiva > 11) {
-      piirraMalli(0, -80, 55, pallo1, 3);
-      piirraMalli(-55, -80, 0, pallo3, 3);
-      piirraMalli(-40, -80, -45, pallo2, 4);
-      piirraMalli(45, -80, 0, pallo4, 5);
-      piirraMalli(0, -80, -50, pallo5, 3);
+      piirraMalli(0, -80, 55, pallo1, 3, 0);
+      piirraMalli(-55, -80, 0, pallo3, 3, 0);
+      piirraMalli(-40, -80, -45, pallo2, 4, 0);
+      piirraMalli(45, -80, 0, pallo4, 5, 0);
+      piirraMalli(0, -80, -50, pallo5, 3, 0);
  /*     piirraPallo2(-40, -80, -45);
       piirraPallo3(-55, -80, 0);
       piirraPallo4(45, -80, 0);
@@ -237,8 +243,10 @@ void draw() {
       piirraPallo1(0, -80, 55);*/
     }
     if (paiva > 12) {
-     piirretaanPossu(800, 700, 0);
-      piirretaanLahja(70, 120); 
+      piirraMalli(800, 0, 700, model, 80, 0); //possu
+      piirraMalli(70, 0, 120, model3, 30, 0); //lahja
+    // piirretaanPossu(800, 700, 0);
+    //  piirretaanLahja(70, 120); 
     }
     
     
@@ -358,7 +366,7 @@ void piirretaanPaketti() {
 }
 */
 
-void piirretaanPossu(int k, int j, int n) {
+/*void piirretaanPossu(int k, int j, int n) {
   pushMatrix();
   translate(k, 0, j);
   scale(80);
@@ -366,6 +374,9 @@ void piirretaanPossu(int k, int j, int n) {
   model.draw();
   popMatrix();
 }
+piirraMalli(x, 0, j, model, 80, n); //possu
+piirraMalli(600, 0, 150, model2, 20, 80); // lumiukko
+piirraMalli(j, 0, k, model3, 30, 0); //lahja
 
 void piirretaanLumiukko() {
   pushMatrix();
@@ -374,14 +385,13 @@ void piirretaanLumiukko() {
   rotateY(80);
   model2.draw();
   popMatrix();
-}
-void piirretaanLahja(int j, int k) {
+} void piirretaanLahja(int j, int k) {
   pushMatrix();
   translate(j, 0, k);
   scale(30);
   model3.draw();
   popMatrix();
-}
+}*/
 
 
 /*void piirretaanLahja2() {
@@ -413,10 +423,11 @@ void piirretaanTalo() {
   popMatrix();
 }*/
 
-void piirraMalli(int x, int y, int z, OBJModel malli, int skaala) {
+void piirraMalli(int x, int y, int z, OBJModel malli, int skaala, int rotaatio) {
   pushMatrix();
   translate(x, y, z);
   scale(skaala);
+  rotateY(rotaatio);
   malli.draw();
   popMatrix();
 }
