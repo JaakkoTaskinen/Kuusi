@@ -155,8 +155,7 @@ void draw() {
    
     piirraKuusi(0, 0, 0, -250);
    
-    piirraMalli(20,0, 40, lahja3, 50, 0);
-    piirraMalli(20, 0, -20, lahja4, 30, 0);
+   
     
     //piirraKuusi(-100, 0, 0, -230);
       
@@ -169,32 +168,21 @@ void draw() {
 
     piirraNumero();
      
-    piirraMaa();
- 
-
-    
     //piirretaan lunta:
     if (paiva > 1) {
       piirretaanLunta();
     }
-    //piiretaan talo
     if (paiva > 2) {
-        //piirretaanTalo();
-        piirraMalli(800, 0, 100, model4, 50, 0);
-    }
-    
-    //tarkistaPaiva();
-
-    //piirretään possu
+      piirraMalli(800, 0, 100, model4, 50, -200); //talo
+    }     //piirretään possu
     if (paiva > 3) {
-      piirraMalli(600, 0, 150, model2, 20, 80); // lumiukko
-      piirraMalli(-60, 0, 50, model3, 30, 0); //lahja
+       piirraMalli(-60, 0, 50, model3, 40, 100); //lahja
      // piirretaanLumiukko();
      // piirretaanLahja(-60, 50);
     }
-    if (paiva > 4) {  
-      piirraMalli(900, 0, 600, model, 80, 0); //possu
-//piirraMalli(600, 0, 150, model2, 20, 80); // lumiukko
+    if (paiva > 4) {
+      piirraMalli(600, 0, 150, model2, 20, 80); // lumiukko  
+      //piirraMalli(600, 0, 150, model2, 20, 80); // lumiukko
 //piirraMalli(j, 0, k, model3, 30, 0); //lahja
     //  piirretaanPossu(900, 600, 0);
     }
@@ -204,26 +192,30 @@ void draw() {
     }
     if (paiva >6) {
     //  piirretaanLahja(50, 55);
-      piirraMalli(50, 0, 55, model3, 30, 0); //lahja
+      piirraMalli(900, 0, 600, model, 80, 0); //possu
+     
     }
     if (paiva >7) {
      // piirretaanPossu(900, 700, 20);
-     piirraMalli(900, 0, 700, model, 80, 200); //possu
+     piirraMalli(50, 0, -55, model3, 30, 0); //lahja
     }
     
     if (paiva >8) {
-      piirraMalli(-135, -190, 27, star, 30, 0); //piirtaa tahden
-    }
-    
-    if (paiva >9) {
-      piirraKirkko();
-
-    }
-    if (paiva > 10) {
       piirraMalli(-55, -150, 0, pallo1, 3, 0);
       piirraMalli(35, -150, 0, pallo2, 3, 0);
       piirraMalli(0, -150, -40, pallo3, 4, 0);
       piirraMalli(0, -150, 55, pallo4, 5, 0);
+      
+    }
+    
+    if (paiva >9) {
+      piirraMalli(900, 0, 700, model, 80, 200); //possu
+     
+
+    }
+    if (paiva > 10) {
+       piirraMalli(20,0, -40, lahja3, 50, 0);
+   
      /* piirraMalli(x, y, z, pallo5, 3);
       piirraPallo1(-55, -150, 0);
       piirraPallo2(35, -150, 0);
@@ -243,12 +235,36 @@ void draw() {
       piirraPallo1(0, -80, 55);*/
     }
     if (paiva > 12) {
-      piirraMalli(800, 0, 700, model, 80, 0); //possu
       piirraMalli(70, 0, 120, model3, 30, 0); //lahja
     // piirretaanPossu(800, 700, 0);
     //  piirretaanLahja(70, 120); 
     }
-    
+    if (paiva > 13) {
+      piirraMalli(-200, 0, 100, lahja4, 30, 0);
+    }
+     if (paiva > 14) {
+       piirraKirkko();
+    } if (paiva > 15) {
+       piirraMalli(800, 0, 700, model, 70, -100); //possu
+    } if (paiva > 16) {
+      
+    } if (paiva > 17) {
+      
+    } if (paiva > 18) {
+      
+    } if (paiva > 19) {
+      
+    } if (paiva > 20) {
+      
+    } if (paiva > 21) {
+      piirraMalli(-135, -190, 27, star, 30, 0); //piirtaa tahden
+    } if (paiva > 22) {
+      
+    } if (paiva > 23) {
+      
+    } if (paiva > 24) {
+      
+    }
     
     piirraPaketti();
     piirraMaa();
