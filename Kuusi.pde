@@ -23,6 +23,7 @@ OBJModel luukku;
 OBJModel star;
 OBJModel kirkko;
 OBJModel laatikko;
+OBJModel lippu;
 
 
 OBJModel pallo1;
@@ -65,7 +66,8 @@ void setup() {
   luukku = new OBJModel(this, "numb1.obj", "relative", TRIANGLES);
   star = new OBJModel(this, "star.obj", "relative", TRIANGLES); 
   laatikko = new OBJModel(this, "boxi.obj", "relative", TRIANGLES);
-  kirkko = new OBJModel(this, "kirkko.obj", "relative", TRIANGLES); 
+  kirkko = new OBJModel(this, "kirkko.obj", "relative", TRIANGLES);
+  lippu = new OBJModel(this, "lippu.obj", "relative", TRIANGLES); 
   pallo1 = new OBJModel(this, "pallo1.obj", "relative", TRIANGLES);
   pallo2 = new OBJModel(this, "pallo2.obj", "relative", TRIANGLES);
   pallo3 = new OBJModel(this, "pallo3.obj", "relative", TRIANGLES);
@@ -149,6 +151,8 @@ void draw() {
     rotateY( mouseX / 100.0 );
    
     piirraKuusi(0, 0, 0, -250);
+    
+    piirraLippu();
     
     
     //piirraKuusi(-100, 0, 0, -230);
@@ -303,6 +307,14 @@ void piirraPaketti(){
   translate(-300, -200, -200);
   laatikko.draw();
   popMatrix();
+}
+
+void piirraLippu() {
+ pushMatrix();
+ translate(-300, -200, 100);
+ lippu.draw();
+ popMatrix(); 
+  
 }
 
 /*
