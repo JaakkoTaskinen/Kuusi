@@ -1,4 +1,4 @@
-    
+
 boolean himmenee = true;
 boolean kirkastuu = false;
 float vari = 255;
@@ -17,13 +17,20 @@ import saito.objloader.*;
 
 OBJModel model;
 OBJModel model2;
-OBJModel model3;
 OBJModel model4;
 OBJModel luukku;
 OBJModel star;
 OBJModel kirkko;
 OBJModel laatikko;
 OBJModel lippu;
+OBJModel kynttila;
+OBJModel kuusiT;
+OBJModel ulkotuli;
+OBJModel tonttu;
+OBJModel pukki;
+
+OBJModel lahja1;
+OBJModel lahja2;
 OBJModel lahja3;
 OBJModel lahja4;
 
@@ -32,7 +39,6 @@ OBJModel pallo2;
 OBJModel pallo3;
 OBJModel pallo4;
 OBJModel pallo5;
-
 
 //lumiparametreja
 int           depth = 14; 
@@ -62,7 +68,8 @@ void setup() {
   numero = new Numero();
   model = new OBJModel(this, "possu.obj", "relative", TRIANGLES);
   model2 = new OBJModel(this, "lumiukko.obj", "relative", TRIANGLES);
-  model3 = new OBJModel(this, "lahja2.obj", "relative", TRIANGLES);
+  lahja1 = new OBJModel(this, "lahja1.obj", "relative", TRIANGLES);
+  lahja2 = new OBJModel(this, "lahja2.obj", "relative", TRIANGLES);
   lahja3 = new OBJModel(this, "lahja3.obj", "relative", TRIANGLES);
   lahja4 = new OBJModel(this, "lahja4.obj", "relative", TRIANGLES);
   model4 = new OBJModel(this, "talo_punainen.obj", "relative", TRIANGLES);
@@ -76,13 +83,18 @@ void setup() {
   pallo3 = new OBJModel(this, "pallo3.obj", "relative", TRIANGLES);
   pallo4 = new OBJModel(this, "pallo4.obj", "relative", TRIANGLES);
   pallo5 = new OBJModel(this, "pallo5.obj", "relative", TRIANGLES);
+  kynttila = new OBJModel(this, "kynttila.obj", "relative", TRIANGLES);
+  kuusiT = new OBJModel(this, "kuusi.obj", "relative", TRIANGLES);
+  ulkotuli = new OBJModel(this, "ulkokynttila.obj", "relative", TRIANGLES);
+  tonttu = new OBJModel(this, "tonttu.obj", "relative", TRIANGLES);
+  pukki = new OBJModel(this, "pukki.obj", "relative", TRIANGLES);
+
   img = loadImage("snow.jpg");
   neulaset = loadImage("neulaset.jpg");
   minion = loadImage("tausta.jpg");
   taustakuva = loadImage("taustakuva2.jpg");
   kaarna = loadImage("kaarna.jpg");
   tausta = loadImage("taustakuva.jpg");
-
   fontti = loadFont("BookAntiqua-Bold-48.vlw");
 
   for ( int i = 0; i< 60; i++)      // now add some elements for initial seeding 
@@ -97,7 +109,6 @@ void setup() {
   }
   minim = new Minim(this); //soitin
   player = minim.loadFile("Joulumaa.mp3", 2048); //joulukappale
-  
 }
 
 void draw() {
@@ -133,7 +144,7 @@ void draw() {
   }
   else {
     if (!kappaleAloitettu) {
-       aloitaKappale(); 
+      aloitaKappale();
     }
     model.disableTexture();
     background(tausta);
@@ -152,171 +163,150 @@ void draw() {
     0, 0, 200, // centerX, centerY, centerZ
     0.0, 0.0, 10.0); // upX, upY, upZ
     rotateY( mouseX / 100.0 );
-   
+
     piirraKuusi(0, 0, 0, -250);
-   
-   
-    
     //piirraKuusi(-100, 0, 0, -230);
-      
-  //  piirraMetsa(-2800, -2800);
-  //  piirraMetsa(-2800, 2800);
-  //  piirraMetsa2(-2800, -2800);
-  //  piirraMetsa2(2800, -2800);
+
+    //  piirraMetsa(-2800, -2800);
+    //  piirraMetsa(-2800, 2800);
+    //  piirraMetsa2(-2800, -2800);
+    //  piirraMetsa2(2800, -2800);
 
 
 
     piirraNumero();
-     
+
     //piirretaan lunta:
     if (paiva > 1) {
       piirretaanLunta();
     }
+
     if (paiva > 2) {
-      piirraMalli(800, 0, 100, model4, 50, -200); //talo
-    }     //piirretään possu
+      piirraMalli(800, 0, 100, model4, 50, -200);
+      piirraMalli(-1000, 0, 500, kirkko, 40, 40);
+    }
+
     if (paiva > 3) {
-       piirraMalli(-60, 0, 50, model3, 40, 100); //lahja
-     // piirretaanLumiukko();
-     // piirretaanLahja(-60, 50);
+      piirraMalli(1100, 0, -500, kuusiT, 50, 10);
+      piirraMalli(900, 0, -400, kuusiT, 50, 20);
     }
+
     if (paiva > 4) {
-      piirraMalli(600, 0, 150, model2, 20, 80); // lumiukko  
-      //piirraMalli(600, 0, 150, model2, 20, 80); // lumiukko
-//piirraMalli(j, 0, k, model3, 30, 0); //lahja
-    //  piirretaanPossu(900, 600, 0);
+      piirraMalli(600, 0, 150, model2, 20, 80); 
     }
+
     if (paiva > 5) {
-     // piirraLippu();
-     piirraMalli(600, 0, -300, lippu, 35, 0);
+      piirraMalli(-200, 9, -500, lippu, 25, 0); 
+      piirraMalli(100, 0, 700, kuusiT, 50, 10); 
+      piirraMalli(-100, 0, 900, kuusiT, 50, 20);
     }
-    if (paiva >6) {
-    //  piirretaanLahja(50, 55);
-      piirraMalli(900, 0, 600, model, 80, 0); //possu
-     
+
+    if (paiva >6) { 
+      piirraMalli(-900, 0, 200, kynttila, 250, 0); 
     }
+
     if (paiva >7) {
-     // piirretaanPossu(900, 700, 20);
-     piirraMalli(50, 0, -55, model3, 30, 0); //lahja
+      piirraMalli(900, 0, 600, model, 80, 0); 
+      piirraMalli(50, 0, -55, lahja2, 10, 0); 
+      piirraMalli(-50, 0, 55, lahja2, 10, 0); 
     }
-    
+
     if (paiva >8) {
+      piirraMalli(-500, 0, 600, kuusiT, 50, 10); 
+      piirraMalli(-600, 0, 700, kuusiT, 50, 20);  
+  }
+
+    if (paiva >9) {
+      piirraMalli(900, 0, 700, model, 80, 200); 
+    }
+
+    if (paiva > 10) {
+      piirraMalli(-920, 0, 190, kynttila, 250, 0); 
+      piirraMalli(20, 0, -40, lahja3, 20, 0); 
+      piirraMalli(-150, 0, 30, lahja3, 25, 0); 
+      piirraMalli(20, 0, 40, lahja3, 30, 0); 
+    }
+
+    if (paiva > 11) {
+      piirraMalli(-700, 0, -800, kuusiT, 50, 10); //tavinen kuusi
+      piirraMalli(-600, 0, -850, kuusiT, 50, 20); //tavinen kuusi
+    }
+
+    if (paiva > 12) {
+      piirraMalli(70, 0, 80, lahja2, 15, 0); //lahja
+      piirraMalli(-70, 0, 100, lahja2, 15, 0); //lahja
+    }
+
+    if (paiva > 13) {
+      piirraMalli(-1100, 0, -100, kuusiT, 50, 10); //tavinen kuusi
+      piirraMalli(-1200, 0, -250, kuusiT, 50, 20); //tavinen kuusi  
+    }
+
+    if (paiva > 14) {
+      piirraMalli(800, 0, 700, model, 70, -100); //possu
       piirraMalli(-55, -150, 0, pallo1, 3, 0);
       piirraMalli(35, -150, 0, pallo2, 3, 0);
       piirraMalli(0, -150, -40, pallo3, 4, 0);
       piirraMalli(0, -150, 55, pallo4, 5, 0);
-      
-    }
     
-    if (paiva >9) {
-      piirraMalli(900, 0, 700, model, 80, 200); //possu
-     
+    }
 
-    }
-    if (paiva > 10) {
-       piirraMalli(20,0, -40, lahja3, 50, 0);
-   
-     /* piirraMalli(x, y, z, pallo5, 3);
-      piirraPallo1(-55, -150, 0);
-      piirraPallo2(35, -150, 0);
-      piirraPallo3(0, -150, -40);
-      piirraPallo4(0, -150, 55);*/
-    }
-    if (paiva > 11) {
+    if (paiva > 15) {
+      piirraMalli(-880, 0, 220, kynttila, 250, 0); //kynttilä
+    } 
+    if (paiva > 16) {
+      piirraMalli(-200, 0, 100, lahja4, 30, 0);
+      piirraMalli(-80, 0, - 60, lahja4, 30, 0);
+    } 
+    if (paiva > 17) {
+      piirraMalli(-400, 0, 100, ulkotuli, 80, 0);   
+    } 
+    if (paiva > 18) {
       piirraMalli(0, -80, 55, pallo1, 3, 0);
       piirraMalli(-55, -80, 0, pallo3, 3, 0);
       piirraMalli(-40, -80, -45, pallo2, 4, 0);
       piirraMalli(45, -80, 0, pallo4, 5, 0);
       piirraMalli(0, -80, -50, pallo5, 3, 0);
- /*     piirraPallo2(-40, -80, -45);
-      piirraPallo3(-55, -80, 0);
-      piirraPallo4(45, -80, 0);
-      piirraPallo5(0, -80, -50);
-      piirraPallo1(0, -80, 55);*/
-    }
-    if (paiva > 12) {
-      piirraMalli(70, 0, 120, model3, 30, 0); //lahja
-    // piirretaanPossu(800, 700, 0);
-    //  piirretaanLahja(70, 120); 
-    }
-    if (paiva > 13) {
-      piirraMalli(-200, 0, 100, lahja4, 30, 0);
-    }
-     if (paiva > 14) {
-       piirraKirkko();
-    } if (paiva > 15) {
-       piirraMalli(800, 0, 700, model, 70, -100); //possu
-    } if (paiva > 16) {
-      
-    } if (paiva > 17) {
-      
-    } if (paiva > 18) {
-      
-    } if (paiva > 19) {
-      
-    } if (paiva > 20) {
-      
-    } if (paiva > 21) {
-      piirraMalli(-135, -190, 27, star, 30, 0); //piirtaa tahden
-    } if (paiva > 22) {
-      
-    } if (paiva > 23) {
-      
-    } if (paiva > 24) {
-      
-    }
-    
+    } 
+    if (paiva > 19) {
+      piirraMalli(-800, 0, 300, tonttu, 80, 40);
+      piirraMalli(-940, 0, 170, kynttila, 250, 0);
+    } 
+    if (paiva > 20) {  
+      piirraMalli(-300, 0, -350, ulkotuli, 80, 0);   
+      piirraMalli(500, 0, 120, ulkotuli, 90, 0);   
+    } 
+    if (paiva > 21) {
+       piirraMalli(-800, 0, 0, tonttu, 80, 20);
+    } 
+    if (paiva > 22) {
+      piirraMalli(-135, -190, 27, star, 30, 0); 
+    } 
+    if (paiva > 23) {
+      piirraMalli(-500, -40, 100, pukki, 80, 0);
+    } 
+ 
     piirraPaketti();
     piirraMaa();
-
-}
-    
-   
-    
-  }
-
-
-
-void piirraMetsa(int x, int z){
-  
-  int j = 0;
-  
-  for (int i = 0; i < 20; i++){
-    
-    piirraKuusi(x + j, 0, z, -250);
-    j = j + 280;
-  
-  }
-}
-void piirraMetsa2(int x, int z){
-  
-  int k = 0;
-  
-  for (int i = 0; i < 20; i++){
-    
-    piirraKuusi(x , 0, z + k, -250);
-    k = k + 280;
-  
   }
 }
 
-void piirraKuusi(int x, int y, int z, int korkeus1){
-    //piirretään kuusi
-    pushMatrix();
-    translate(x, y, z);
-    kappale.piirraKappale1(55, 1, 18, new Point3d(0, korkeus1, 0), new Point3d(0, -160, 0), neulaset); 
-    kappale.piirraKappale1(65, 1, 24, new Point3d(0, korkeus1, 0), new Point3d(0, -90, 0), neulaset); 
-    kappale.piirraKappale1(70, 1, 35, new Point3d(0, korkeus1, 0), new Point3d(0, -20, 0), neulaset); 
-    popMatrix();
-  
-    //piirretään kuusen runko
-    pushMatrix();
-    translate(x, y, z);
-    kappale.piirraKappale1(20, 15, 20, new Point3d(0, -30, 0), new Point3d(0, 0, 0), kaarna);
-    popMatrix();
+void piirraKuusi(int x, int y, int z, int korkeus1) { //piirretään kuusi
+  pushMatrix();
+  translate(x, y, z);
+  kappale.piirraKappale1(55, 1, 18, new Point3d(0, korkeus1, 0), new Point3d(0, -160, 0), neulaset); 
+  kappale.piirraKappale1(65, 1, 24, new Point3d(0, korkeus1, 0), new Point3d(0, -90, 0), neulaset); 
+  kappale.piirraKappale1(70, 1, 35, new Point3d(0, korkeus1, 0), new Point3d(0, -20, 0), neulaset); 
+  popMatrix();
+
+  //piirretään kuusen runko
+  pushMatrix();
+  translate(x, y, z);
+  kappale.piirraKappale1(20, 15, 20, new Point3d(0, -30, 0), new Point3d(0, 0, 0), kaarna);
+  popMatrix();
 }
 void piirraMaa() {
-   //fill(200);
+  //fill(200);
   noFill();
   noTint();
   textureMode(NORMAL);
@@ -347,97 +337,12 @@ void piirretaanLunta() {
   }
 }
 
-void piirraPaketti(){
+void piirraPaketti() {
   pushMatrix();
   translate(-300, -200, -200);
   laatikko.draw();
   popMatrix();
 }
-
-
-
-
-/*
-void piirretaanPaketti() {
-  pushMatrix();
-  translate(-210, 0, 0);
-  /* if (vari == 190) {
-   himmenee = false;
-   kirkastuu = true;
-   }
-   if (vari == 255) {
-   himmenee = true;
-   kirkastuu = false;
-   }
-   if (himmenee) {
-   vari = vari - 1;
-   }
-   if (kirkastuu) {
-   vari = vari + 1;
-   }
-   
-   fill(vari);
-    kappale.piirraKappale1(40, 40, 4, new Point3d(0, -40, 0), new Point3d(0, 0, 0), minion);
-  popMatrix();
-}
-*/
-
-/*void piirretaanPossu(int k, int j, int n) {
-  pushMatrix();
-  translate(k, 0, j);
-  scale(80);
-  rotateY(n);
-  model.draw();
-  popMatrix();
-}
-piirraMalli(x, 0, j, model, 80, n); //possu
-piirraMalli(600, 0, 150, model2, 20, 80); // lumiukko
-piirraMalli(j, 0, k, model3, 30, 0); //lahja
-
-void piirretaanLumiukko() {
-  pushMatrix();
-  translate(600, 0, 150);
-  scale(20);
-  rotateY(80);
-  model2.draw();
-  popMatrix();
-} void piirretaanLahja(int j, int k) {
-  pushMatrix();
-  translate(j, 0, k);
-  scale(30);
-  model3.draw();
-  popMatrix();
-}*/
-
-
-/*void piirretaanLahja2() {
- pushMatrix();
- translate(20, 0, 40);
-  scale(50);
-  lahja3.draw();
-  popMatrix();
-}
-void piirretaanLahja3(){
-   pushMatrix();
- translate(20, 0, -20);
-  scale(30);
-  lahja4.draw();
-  popMatrix();
-}   
-void piirraLippu() {
- pushMatrix();
- translate(600, 0, -300);
- scale(35);
- lippu.draw();
- popMatrix();
-}
-void piirretaanTalo() {
-  pushMatrix();
-  translate(800, 0, 100);
-  scale(50);
-  model4.draw();
-  popMatrix();
-}*/
 
 void piirraMalli(int x, int y, int z, OBJModel malli, int skaala, int rotaatio) {
   pushMatrix();
@@ -448,81 +353,20 @@ void piirraMalli(int x, int y, int z, OBJModel malli, int skaala, int rotaatio) 
   popMatrix();
 }
 
-void piirraNumero(){
-    String luukunnumero = numero.tarkistaPaiva(paiva);
-    luukku.load(luukunnumero);
-    pushMatrix();
-    translate(-100, -200, 140);
-    scale(700);
-    luukku.draw();
-    luukku.reset();
-    popMatrix();
+void piirraNumero() {
+  String luukunnumero = numero.tarkistaPaiva(paiva);
+  luukku.load(luukunnumero);
+  pushMatrix();
+  translate(-100, -300, 140);
+  scale(600);
+  luukku.draw();
+  luukku.reset();
+  popMatrix();
 }
-/*
-void piirraStar(){
-    pushMatrix();
-    translate(-135, -190, 27);
-    scale(30);
-    star.draw();
-    popMatrix();
-}*/
-
-void piirraKirkko(){
-    pushMatrix();
-    translate(-1000, 0, 500);
-    rotateY(40);
-    scale(40);
-    kirkko.draw();
-    popMatrix();
-
-}
-
-
-
-/*
-void piirraPallo1(int x, int y, int z) {
- pushMatrix();
- translate(x, y, z);
- scale(4);
- pallo1.draw();
- popMatrix();
-}
-
-void piirraPallo2(int x, int y, int z) {
- pushMatrix();
- translate(x, y, z);
- scale(3);
- pallo2.draw();
- popMatrix();
-}
-
-void piirraPallo3(int x, int y, int z) {
- pushMatrix();
- translate(x, y, z);
- scale(4);
- pallo3.draw();
- popMatrix();
-}
-
-void piirraPallo4(int x, int y, int z) {
- pushMatrix();
- translate(x, y, z);
- scale(5);
- pallo4.draw();
- popMatrix();
-}
-
-void piirraPallo5(int x, int y, int z) {
- pushMatrix();
- translate(x, y, z);
- scale(3);
- pallo5.draw();
- popMatrix();
-}*/
 
 void aloitaKappale() {
   kappaleAloitettu = true; 
-  player.play(); //aloittaa soittamisen 
+  player.play(); //aloittaa soittamisen
 }
 
 void stop() {
@@ -539,8 +383,8 @@ void keyPressed() {
     if (aloitettu && paiva < 24) {
       paiva ++;
     }
-    else{
-    exit();
+    else {
+      exit();
     }
   }
 }

@@ -10,17 +10,25 @@ Ns 0
 d 1
 Tr 1
 
-newmtl Color_J12
-Ka 0.356863 0.117647 0.6
-Kd 0.356863 0.117647 0.6
+newmtl Color_A01
+Ka 1 0 0
+Kd 1 0 0
 Ks 0.333 0.333 0.333
 Ns 0
 d 1
 Tr 1
 
-newmtl Color_B01
-Ka 1 0.247059 0
-Kd 1 0.247059 0
+newmtl Color_009
+Ka 0 0 0
+Kd 0 0 0
+Ks 0.333 0.333 0.333
+Ns 0
+d 1
+Tr 1
+
+newmtl 0003_DeepPink
+Ka 1 0.0784314 0.576471
+Kd 1 0.0784314 0.576471
 Ks 0.333 0.333 0.333
 Ns 0
 d 1

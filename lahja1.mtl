@@ -10,6 +10,14 @@ Ns 0
 d 1
 Tr 1
 
+newmtl Color_F16
+Ka 0.2 0.4 0
+Kd 0.2 0.4 0
+Ks 0.333 0.333 0.333
+Ns 0
+d 1
+Tr 1
+
 newmtl Color_A01
 Ka 1 0 0
 Kd 1 0 0
@@ -18,9 +26,9 @@ Ns 0
 d 1
 Tr 1
 
-newmtl Color_G01
-Ka 0 1 0
-Kd 0 1 0
+newmtl Color_009
+Ka 0 0 0
+Kd 0 0 0
 Ks 0.333 0.333 0.333
 Ns 0
 d 1
